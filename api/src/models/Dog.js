@@ -32,5 +32,12 @@ module.exports = (sequelize) => {
       allowNull: true
     }
   });
+
+  sequelize.define("temperament",{
+    name: {
+      type: DataTypes.STRING,
+      allowNull: true
+  }
+  })
   
 };

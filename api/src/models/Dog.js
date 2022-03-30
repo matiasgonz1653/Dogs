@@ -15,11 +15,11 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true
     },
-    weight: { //altura
+    weight: { //peso
       type: DataTypes.STRING,
       allowNull: false,
     },
-    height: {
+    height: { //altura
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -39,5 +39,5 @@ module.exports = (sequelize) => {
       allowNull: true
   }
   })
-  
+
 };

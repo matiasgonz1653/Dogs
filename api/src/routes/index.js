@@ -115,7 +115,7 @@ router.get("/temperaments", async function (req, res) {
                 }
             })
         });
-        const allTemp = await Temperament.findAll();
+        const allTemp = await Temperament.toString().findAll();
         res.status(200).send(allTemp);
     } catch (error) {
         res.status(404).send("eror 404 :C");
@@ -124,43 +124,78 @@ router.get("/temperaments", async function (req, res) {
 
 router.post("/dog", async function (req, res) {
 
-    const { name,
-        min_height,
-        max_height,
-        min_weight,
-        max_weight,
-        life_span,
-        temperaments,
-        image } = req.body
+        const { name,
+            min_height,
+            max_height,
+            min_weight,
+            max_weight,
+            life_span,
+            temperaments,
+            image } = req.body
+        
+        const heightMM = [];
+        const minheight = min_height.toString().trim();
+        const maxheight = max_height.toString().trim();
+        heightMM.push(minheight, maxheight);
     
-    const heightMM = [];
-    const minheight = min_height.trim();
-    const maxheight = max_height.tirm();
-    heightMM.push(maxheight, minheight);
-
-    const weightMM = [];
-    const minweight = min_weight.trim();
-    const maxweight = max_weight.tirm();
-    weightMM.push(maxweight, minweight);
-
-    const dog = await Dog.create({
-        name: name,
-        height: heightMM,
-        weight: weightMM,
-        life_span: life_span,
-        image: image ? image : "https://pbs.twimg.com/media/FGfgmSPWQAUDu4l.jpg"
-    });
+        const weightMM = [];
+        const minweight = min_weight.toString().trim();
+        const maxweight = max_weight.toString().trim();
+        weightMM.push(minweight, maxweight);
     
-    const asociarTemp = await Temperament.findAll({
-        where: {
-            name: temperaments
-        }
-    })
+        const dog = await Dog.create({
+            name: name,
+            height: heightMM,
+            weight: weightMM,
+            life_span: life_span,
+            image: image ? image : "https://pbs.twimg.com/media/FGfgmSPWQAUDu4l.jpg"
+        });
+        
+        const asociarTemp = await Temperament.findAll({
+            where: {
+                name: temperaments
+            }
+        })
+    
+        dog.addTemperament(asociarTemp);
+    
+        res.status(200).send("perro creado!");        
 
-    dog.addTemperament(asociarTemp);
-
-    res.send("perro creado!");
 })
 
+/* router.post("/dog", async (req, res) => {
+    let {
+      name,
+      minimHeight,
+      maximHeight,
+      minimWeight,
+      maximWeight,
+      lifeSpan,
+      image,
+      createdAtDb,
+      temperament,
+    } = req.body;
+  
+    let height = minimHeight + " - " + maximHeight;
+    let weight = minimWeight + " - " + maximWeight;
+  
+    let dogCreated = await Dog.create({
+      name,
+      height,
+      weight,
+      lifeSpan,
+      image,
+      createdAtDb,
+    });
+  
+    let temperamentDb = await Temperament.findAll({
+      where: {
+        name: temperament,
+      },
+    });
+  
+    dogCreated.addTemperament(temperamentDb);
+    res.status(200).send("Perrito creado :D");
+  }); */
 
 module.exports = router;

@@ -10,6 +10,15 @@ export default function Home() {
     const dispatch = useDispatch();
     const allDogs = useSelector((state) => state.dogs);
     const allTemperaments = useSelector((state) => state.temperament);
+    const [currentPage, setcurrentPage] = useState(1)
+    const [dogsPage, setDogs] = useState(8)
+    const indexLastDog = currentPage * dogsPage;
+    const indexFristDog = indexLastDog - dogsPage;
+    const currentDog = allDogs.slice(indexFristDog, indexLastDog);
+
+    const paginado = (pageNumber) => {
+        setcurrentPage(pageNumber)
+    }
 
     useEffect(() => {
         dispatch(getDogs());

@@ -45,7 +45,7 @@ const getApiInfo = async () => {
             height : heightMM,
             weight : weightMM,
             life_span : d.life_span,
-            temperaments : temp,
+            temperament : d.temperament,
             image: d.image.url,
         }
     })
@@ -102,7 +102,7 @@ router.get("/dogs/:idRaza", async function (req, res) {
 })
 
 
-router.get("/temperaments", async function (req, res) {
+router.get("/temperament", async function (req, res) {
     try {
         const Api = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${YOUR_API_KEY}`)
         const allTemperaments = Api.data.map(t => t.temperament)
@@ -163,39 +163,40 @@ router.post("/dog", async function (req, res) {
 
 })
 
-/* router.post("/dog", async (req, res) => {
-    let {
-      name,
-      minimHeight,
-      maximHeight,
-      minimWeight,
-      maximWeight,
-      lifeSpan,
-      image,
-      createdAtDb,
-      temperament,
-    } = req.body;
-  
-    let height = minimHeight + " - " + maximHeight;
-    let weight = minimWeight + " - " + maximWeight;
-  
-    let dogCreated = await Dog.create({
-      name,
-      height,
-      weight,
-      lifeSpan,
-      image,
-      createdAtDb,
-    });
-  
-    let temperamentDb = await Temperament.findAll({
-      where: {
-        name: temperament,
-      },
-    });
-  
-    dogCreated.addTemperament(temperamentDb);
-    res.status(200).send("Perrito creado :D");
-  }); */
+/*  router.post("/dog", async (req, res) => {
+        let {
+        name,
+        minimHeight,
+        maximHeight,
+        minimWeight,
+        maximWeight,
+        lifeSpan,
+        image,
+        createdAtDb,
+        temperament,
+        } = req.body;
+    
+        let height = minimHeight + " - " + maximHeight;
+        let weight = minimWeight + " - " + maximWeight;
+
+
+        let dog = await Dog.create({
+            name,
+            height,
+            weight,
+            lifeSpan,
+            image: image ? image : "https://pbs.twimg.com/media/FGfgmSPWQAUDu4l.jpg",
+            createdAtDb,
+        });
+    
+        let temperamentDb = await Temperament.findAll({
+        where: {
+            name: temperament,
+        },
+        });
+    
+        dog.addTemperament(temperamentDb);
+        res.status(200).send("Perrito creado! :D");
+    }); */
 
 module.exports = router;

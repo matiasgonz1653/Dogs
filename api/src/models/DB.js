@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
     },
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV1,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true
     },
@@ -30,6 +30,11 @@ module.exports = (sequelize) => {
     image: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    createdAtDb: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
     }
   });
 

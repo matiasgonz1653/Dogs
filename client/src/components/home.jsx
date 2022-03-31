@@ -1,19 +1,24 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDogs, getTemperaments } from "../actions";
+import { getDogs, getTemperaments ,filterTemperamets, filterWeight, filterAlphabetical} from "../actions";
 import { Link } from "react-router-dom";
 import Dogs from "./dog";
+import Paginado from "./pagination"
+import TemperamentsSelect from "./temperamentSelect";
 
 
 export default function Home() {
     const dispatch = useDispatch();
     const allDogs = useSelector((state) => state.dogs);
     const allTemperaments = useSelector((state) => state.temperament);
+
+
+    const [orden, setOrden] = useState("")
     const [currentPage, setcurrentPage] = useState(1)
-    const [dogsPage, setDogs] = useState(8)
-    const indexLastDog = currentPage * dogsPage;
-    const indexFristDog = indexLastDog - dogsPage;
+    const [dogsOnPage, setDogs] = useState(8)
+    const indexLastDog = currentPage * dogsOnPage;
+    const indexFristDog = indexLastDog - dogsOnPage;
     const currentDog = allDogs.slice(indexFristDog, indexLastDog);
 
     const paginado = (pageNumber) => {
@@ -23,11 +28,29 @@ export default function Home() {
     useEffect(() => {
         dispatch(getDogs());
         dispatch(getTemperaments());
-    }, [dispatch]);
+    },[]);
 
     function handleClick(e) {
         e.preventDefault();
         dispatch(getDogs());
+    }
+
+
+    function handleFilterByTemperament(e) {
+        e.preventDefault();
+        dispatch(filterTemperamets(e.target.value))
+    }
+
+    function handleFilterByWeight(e) {
+        e.preventDefault();
+        dispatch(filterWeight(e.target.value))
+    }
+
+    function handleFilterByAlphabetical(e) {
+        e.preventDefault();
+        dispatch(filterAlphabetical(e.target.value));
+        setcurrentPage(1);
+        setOrden(`${ e.target.value }`);
     }
 
 
@@ -39,36 +62,47 @@ export default function Home() {
                 volver a cargar los perros
             </button>
             <div>
-                <select>
+                <select onChange={e=>handleFilterByAlphabetical(e)}>
                     <option disabled selected>Orden Alfabetico</option>
-                    <option value="A-Z">A-Z</option>
-                    <option value="Z-A">Z-A</option>
+                    <option value="Asc">A-Z</option>
+                    <option value="Des">Z-A</option>
                 </select>
 
-                <select>
+                <select onClick={e=>handleFilterByWeight(e)}>
                     <option disabled selected>Filtrado por peso</option>
                     <option value="min_weight">Minimo</option>
                     <option value="max_weight">Maximo</option>
                 </select>
+
                 <select>
                     <option value="All">Todos</option>
                     <option value="Create">Creados</option>
                     <option value="api">Existentes</option>
                 </select>
 
+                {/*  <TemperamentsSelect
+                    allTemperaments={allTemperaments}
+                    handleFilterByTemperament={handleFilterByTemperament}
+                /> */}
+
+                <Paginado
+                    dogsOnPage={dogsOnPage}
+                    allDogs={allDogs.length}
+                    paginado={paginado}
+                />
                 <div>
-                    {
-                        allDogs && allDogs.map(d => {
-                            return (
-                                <Dogs
-                                id={d.ID}
-                                name={d.name}
-                                temperament={d.temperament}
-                                image={d.image}
-                                weight={d.weight}
-                                height={d.height}
-                                ></Dogs>
-                            )
+                {
+                    currentDog?.map(d => {
+                        return (
+                        <Dogs
+                            id={d.ID}
+                            name={d.name}
+                            temperament={d.temperament}
+                            image={d.image}
+                            weight={d.weight}
+                            height={d.height}
+                        ></Dogs>
+                        )
                     })
                 }
                 </div>

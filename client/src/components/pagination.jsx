@@ -1,22 +1,21 @@
 import React from "react";
 
-export default function Paginado ({DogsOnPage, allDogs, paginado}) {
+export default function Paginado ({dogsOnPage, allDogs, paginado}) {
     const pageNumbers = []
 
-    for(let i = 0; i<=Math.ceil(allDogs/DogsOnPage); i++) {
+    for(let i = 0; i<Math.ceil(allDogs/dogsOnPage); i++) {
         pageNumbers.push(i+1)
     }
 
 
     return(
         <div>
-            <ul>
+            <ol>
                 {pageNumbers?.map(n => (
-                <li className="number" key={n}> //lista
-                    <a onClick={() => paginado(n)}>{n}</a>    
+                <li className="number" key={n} onClick={() => paginado(n)}>   
                 </li>
             ))}
-            </ul>    
+            </ol>    
         </div>
     )
 }

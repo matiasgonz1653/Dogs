@@ -15,7 +15,6 @@ const getApiInfo = async () => {
             heightMM.push(heightMM[0])
         }
 
-
         const weightMM = []
         d.weight.metric.split("-")?.forEach(element => {
             weightMM.push(element.trim());
@@ -49,7 +48,37 @@ const getDBinfo = async () => {
         }
     })
 
-    return dogInDB;
+    const dogInfo = await dogInDB.map(d => {
+        const heightMM = []
+        d.height.split("-")?.forEach(element => {
+            heightMM.push(element.trim());
+        })
+        if (!heightMM[1]) {
+            heightMM.push(heightMM[0])
+        }
+
+
+        const weightMM = []
+        d.weight.split("-")?.forEach(element => {
+            weightMM.push(element.trim());
+        })
+        if (!weightMM[1]) {
+            weightMM.push(weightMM[0])
+        }
+
+        return{
+            id: d.id,
+            name: d.name,
+            height: heightMM,
+            weight: weightMM,
+            lifeSpan: d.life_span,
+            image: d.image,
+            temperament: d.temperaments,
+            createdAtDb: d.createdAtDb,
+        }
+    })
+    
+return dogInfo;
 }
 
 

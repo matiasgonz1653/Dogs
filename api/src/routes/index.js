@@ -9,6 +9,7 @@ const router = Router();
 router.get("/dogs", async function (req, res) {
     const { name } = req.query;
     const dogTotal = await getAllDogs();
+
     if (name) {
         const dogName = dogTotal.filter(d => d.name.toLowerCase().includes(name.toLowerCase()));
         dogName.length ? res.status(200).send(dogName) : res.status(400).send("no se encontro le perro");
@@ -40,6 +41,7 @@ router.get("/temperament", async (req, res) => {
 });
 
 router.post("/dog", async (req, res) => {
+    
     let {
         name,
         minimHeight,
@@ -51,21 +53,20 @@ router.post("/dog", async (req, res) => {
         createdAtDb,
         temperament,
     } = req.body;
-    
-    let height = [];
-    height.push(minimHeight, maximHeight);
-    let weight = [];
-    weight.push(minimWeight, maximWeight);
+
+    let height = minimHeight + " - " + maximHeight
+    let weight = minimWeight + " - " + maximWeight
 
 
     let dog = await Dog.create({
         name,
         height,
         weight,
-        lifeSpan,
+        life_span: lifeSpan? lifeSpan: "15 años",
         image: image ? image : "https://pbs.twimg.com/media/FGfgmSPWQAUDu4l.jpg",
         createdAtDb,
     });
+    
     
     let temperamentDb = await Temperament.findAll({
         where: {
@@ -74,6 +75,7 @@ router.post("/dog", async (req, res) => {
     });
     
     dog.addTemperament(temperamentDb);
+    
     res.status(200).send("Perrito creado! :D");
 });
 

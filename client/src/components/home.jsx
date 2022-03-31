@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDogs, getTemperaments ,filterTemperamets, filterWeight, filterAlphabetical} from "../actions";
+import { getDogs, getTemperaments ,filterTemperamets, filterWeight, filterAlphabetical, filterCreated} from "../actions";
 import { Link } from "react-router-dom";
 import Dogs from "./dog";
 import Paginado from "./pagination"
@@ -53,6 +53,12 @@ export default function Home() {
         setOrden(`${ e.target.value }`);
     }
 
+    function handleFilterCreate(e) {
+        e.preventDefault();
+        dispatch(filterCreated(e.target.value));
+        setcurrentPage(1);
+    }
+
 
     return (
         <div>
@@ -74,7 +80,7 @@ export default function Home() {
                     <option value="max_weight">Maximo</option>
                 </select>
 
-                <select>
+                <select onClick={e=>handleFilterCreate(e)}>
                     <option value="All">Todos</option>
                     <option value="Create">Creados</option>
                     <option value="api">Existentes</option>

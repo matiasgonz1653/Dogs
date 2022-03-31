@@ -87,7 +87,26 @@ function rootReducer(state = initialState, action) {
                 dogs: dogsSorted,
             };
 
-            
+        case "FILTER_BY_CREATE":
+            const Dogs = state.allDogs;
+            const createdFilter = (
+                action.payload === "All" ? Dogs :
+                Dogs.filter((e) => {
+                        if (action.payload==="Create") {
+                            if (e.createdAtDb) {
+                                return e;
+                            }
+                        } else if(action.payload==="api"){
+                            if (!e.createdAtDb) {
+                                return e;
+                            }
+                        }
+                    })
+            );
+            return {
+                ...state,
+                dog:createdFilter
+            }
         default:
             return state;
     }

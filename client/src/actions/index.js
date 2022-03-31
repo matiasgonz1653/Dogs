@@ -42,6 +42,9 @@ export function filterAlphabetical(paylod) {
     }
 }
 
-export function filterCreated(payload) {
-    
+export function filterCreated(paylod) {
+    return {
+        type: "FILTER_BY_CREATE",
+        paylod
+    }
 }

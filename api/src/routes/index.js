@@ -62,7 +62,7 @@ router.post("/dog", async (req, res) => {
         name,
         height,
         weight,
-        life_span: lifeSpan? lifeSpan: "15 años",
+        life_span: lifeSpan,
         image: image ? image : "https://pbs.twimg.com/media/FGfgmSPWQAUDu4l.jpg",
         createdAtDb,
     });

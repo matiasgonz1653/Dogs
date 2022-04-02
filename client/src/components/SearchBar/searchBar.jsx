@@ -9,14 +9,19 @@ export default function SearchBar() {
     const [name, setName] = useState("")
 
     function handleInputChange(e){
-        e.reventDefault();
+        console.log(e)
+        e.preventDefault();
         setName(e.target.value)
     }
 
-    function handleSubmit(e) {
+    function handleSubmit(e){
         e.preventDefault();
-        dispatch(getDogName(name));
-        setName("");
+        if(name.length === 0) {
+            return alert ("Please write a breed")
+        } else{
+            dispatch(getDogName(name));
+            setName("")
+        }
     }
 
     return (
@@ -25,9 +30,10 @@ export default function SearchBar() {
                 <input
                     type="text"
                     placeholder="Buscar..."
+                    onKeyPress={e => e.key === 'Enter' && handleSubmit(e)}
                     onChange={e=>handleInputChange(e)}
                 />
-                <button type="submit" onClick={e=>handleSubmit(e)}>Buscar</button>
+                <button type="submit" onClick={(e)=>handleSubmit(e)}>Buscar</button>
             </div>
         </div>
     )

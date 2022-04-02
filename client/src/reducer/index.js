@@ -1,95 +1,146 @@
+import {
+    ORDER_BY_ALPHABETICAL,
+    ORDER_BY_WEIGHT,
+    FILTER_BY_CREATED,
+    FILTER_DOGS_BY_TEMPERAMENT,
+    GET_DETAIL,
+    GET_DOGS,
+    GET_DOG_NAME,
+    GET_TEMPERAMENTS,
+    POST_DOG,
+} from "../actions/index"
 
 const initialState = {
     dogs: [],
     temperaments: [],
     allDogs: [],
+    detail:[]
 }
 
-function rootReducer(state = initialState, action) {
-    switch (action.type) {
 
-        case "GET_DOGS":
+function rootReducer(state = initialState, action) {
+    
+    switch (action.type) {
+        case GET_DOGS:
             return {
                 ...state,
                 dogs: action.payload,
                 allDogs: action.payload
             }
         
-        case "GET_TEMPERAMENTS":
+        case GET_TEMPERAMENTS:
             return {
                 ...state,
                 temperaments: action.payload
             }
         
-        case 'FILTER_DOGS_BY_TEMPERAMENT':
-            const allDogs3 = state.dogsAll
-            const tempDogs = allDogs3.filter(dog => {
-                if(dog.temperaments){
-                    const temperament = dog.temperaments.map( dog => dog.name)
-                    return temperament.includes(action.payload)}
-                if (dog.temperament) { 
-                    return dog.temperament.includes(action.payload)
-                }
-                return null
-            })
-
+        case GET_DOG_NAME:
             return {
                 ...state,
-                dogs: action.payload === 'Temps' ? allDogs3 : tempDogs,
-
+                dogs: action.payload
             }
         
-        case "FILTER_BY_WEIGHT":
-                const sortedWeight = action.payload === "min_weight" ? 
-                    state.allDogs.sort((a, b) => {
-                        if (parseInt(a.weight[1]) > parseInt(b.weight[1])) {
-                            return 1;
-                        }
-                        if (parseInt(b.weight[1]) > parseInt(a.weight[1])) {
-                            return -1;
-                        }
-                        return 0;
-                    }) :
-                    state.allDogs.sort((a, b) => {
-                        if (parseInt(a.weight[1]) > parseInt(b.weight[1])) {
-                            return -1;
-                        }
-                        if (parseInt(b.weight[1]) > parseInt(a.weight[1])) {
-                            return 1;
-                        }
-                        return 0;
-                    })
+        case GET_DETAIL:
+            return {
+                ...state,
+                detail : action.payload
+            }
+        
+        case POST_DOG:
+            return {
+                ...state
+            }
+        
+        
+        case ORDER_BY_ALPHABETICAL:
+            if (action.payload === "default"){
                 return {
                     ...state,
-                    dogs: sortedWeight
+                    dogs: state.dogs
+                }
+            }
+            if (action.payload === "Asc") {
+                return {
+                    ...state,
+                    dogs: state.allDogs.sort(function (a, b) {
+                        if (a.name > b.name) {
+                            return 1;
+                        }
+                        if (b.name > a.name) {
+                            return -1;
+                        }
+                        return 0
+                    }) 
+                }
+            } 
+            if (action.payload === "Des"){
+                return{
+                    ...state,
+                    dogs: state.allDogs.sort (function (a, b) {
+                        if (a.name > b.name) {
+                            return -1;
+                        }
+                        if (b.name > a.name) {
+                            return 1
+                        }
+                        return 0;
+                    })
+                }
             }
         
-        case "ORDER_BY_NAME":
-            const dogsSorted = action.payload === "Asc"
-                ? state.dogs.sort(function (a, b) {
-                    if (a.name > b.name) {
-                        return 1;
-                    }
-                    if (b.name > a.name) {
-                        return -1;
-                    }
-                    return 0;
+        
+        case ORDER_BY_WEIGHT:
+            console.log(action)
+            if (action.payload === "default") {
+                return {
+                    ...state,
+                    dogs: state.allDogs
+                }
+            }
+            if (action.payload === "min_weight") {
+                return {
+                    ...state,
+                    dogs: state.allDogs.sort((a, b) => {
+                        if (parseInt(a.weight[0]) > parseInt(b.weight[0])) {
+                            return 1;
+                        }
+                        if (parseInt(b.weight[0]) > parseInt(a.weight[0])) {
+                            return -1;
+                        }
+                        return 0;
                     })
-                : state.dogs.sort(function (a, b) {
-                    if (a.name > b.name) {
-                        return -1;
-                    }
-                    if (b.name > a.name) {
-                        return 1;
-                    }
-                    return 0;
-                    });
+                }
+            }
+            if (action.payload === "max_weight") {
+                return {
+                    ...state,
+                    dogs: state.allDogs.sort((a, b) => {
+                        if (parseInt(a.weight[1]) > parseInt(b.weight[1])) {
+                            return -1;
+                        }
+                        if (parseInt(b.weight[1]) > parseInt(a.weight[1])) {
+                            return 1;
+                        }
+                        return 0;
+                    })
+                }
+            }
+        
+        
+        case FILTER_DOGS_BY_TEMPERAMENT:
+            console.log(action)
+            const allDogs = state.allDogs;
+            const temperamentFilter =
+                action.payload === 'All' ? allDogs
+                    : allDogs.filter((e)=>
+                        e.temperament?.includes(action.payload))              
             return {
                 ...state,
-                dogs: dogsSorted,
-            };
+                dogs: temperamentFilter,
+            }
 
-        case "FILTER_BY_CREATE":
+        case FILTER_BY_CREATED:
+            console.log(action)
             const Dogs = state.allDogs;
             const createdFilter = (
                 action.payload === "All" ? Dogs :
@@ -98,7 +149,7 @@ function rootReducer(state = initialState, action) {
                             if (e.createdAtDb) {
                                 return e;
                             }
-                        } else if(action.payload==="api"){
+                        } else if(action.payload==="Api"){
                             if (!e.createdAtDb) {
                                 return e;
                             }
@@ -108,12 +159,6 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 dogs:createdFilter
-            }
-        
-        case "GET_DOG_NAME":
-            return {
-                ...state,
-                dogs: action.payload
             }
         
         default:

@@ -1,86 +1,113 @@
 import axios from "axios";
 
+export const GET_DOGS = "GET_DOGS";
+export const GET_DETAIL = "GET_DETAIL";
+export const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
+export const GET_DOG_NAME = "GET_DOG_NAME";
+export const POST_DOG = "POST_DOG";
+export const ORDER_BY_ALPHABETICAL = "ORDER_BY_ALPHABETICAL";
+export const ORDER_BY_WEIGHT = "ORDER_BY_WEIGHT";
+export const FILTER_DOGS_BY_TEMPERAMENT = "FILTER_DOGS_BY_TEMPERAMENT";
+export const FILTER_BY_CREATED = "FILTER_BY_CREATED";
+
+
+
 export function getDogs() {
     return async function (dispatch) {
-        var json = await axios.get("http://localhost:3001/dogs");
-        return dispatch({
-            type: "GET_DOGS",
-            payload: json.data,
-        })
-    }
-}
-
-export const getDetail = (id) => (dispatch) => {
-    return fetch(`http://localhost:3001/dogs/${id}`)
-    .then ((response) => response.json())
-    .then ((json) => {
-        dispatch ({
-            type: "GET_DETAIL",
-            payload: json
-        })
-    })
-}
-
-export function getDogTemperament() {
-    return async function (dispatch) {
-        var json = await axios.get("http://localhost:3001/temperament");
-        return dispatch({
-            type: "GET_TEMPERAMENTS",
-            payload: json.data
-        })
-    }
-}
-
-export function getDogName(name) {
-    return async function (dispatch) {
         try {
-            var resp = await axios.get(`http://localhost:3001/dogs?name=${name}`)
+            var json = await axios.get("http://localhost:3001/dogs");
             return dispatch({
-                type: "GET_DOG_NAME",
-                payload: resp.data
-            })
+                type: "GET_DOGS",
+                payload: json.data,
+            })    
         } catch (error) {
-            console.log(error)
+            alert("conection failed");
         }
     }
 }
 
-export const postDog = (payload) => () => {
-    return fetch("http://localhost:3001/dog", {
-        method: "POST",
-        headers: {
-            accept: "application/json",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload),
-    })
+export function getDetail(payload) {
+    return async function (dispatch){
+    try {
+        var json = await axios.get(`http://localhost:3001/dogs/${payload}`)
+        return dispatch({
+            type: GET_DETAIL,
+            payload: json
+        });
+    } catch (error) {
+        alert("error al buscar perro por ID")
+    }}
 }
 
-
-export function filterDogsByTemperament(paylod) {
-    return {
-        type: "FILTER_DOGS_BY_TEMPERAMENT",
-        paylod
+export function getDogName(name) {
+    console.log(name)
+    return async function (dispatch) {
+        try {
+            var resp = await axios.get(`http://localhost:3001/dogs?name=${name}`)
+            return dispatch({
+                type: GET_DOG_NAME,
+                payload: resp.data
+            })
+        } catch (error) {
+            alert("Error al buscar perro")
+        }
     }
 }
 
-export function filterWeight(paylod) {
-    return {
-        type: "FILTER_BY_WEIGHT",
-        paylod
+export function getDogTemperament() {
+    return async function (dispatch) {
+        try {
+            var json = await axios.get("http://localhost:3001/temperament");
+            return dispatch({
+                type: "GET_TEMPERAMENTS",
+                payload: json.data
+            })    
+        } catch (error) {
+            alert("error al buscar Temperamentos")
+        }
     }
 }
 
-export function filterAlphabetical(paylod) {
+
+export function postDog (payload) {
+    return async function(dispatch){
+        try{
+            await axios.post('http://localhost:3001/dogs', payload);
+            return {
+                type: POST_DOG,
+            }
+        } 
+        catch(error){
+            alert("Post failed")
+        }
+    } 
+} 
+
+
+export function orderAlphabetical(payload) {
     return {
-        type: "ORDER_BY_NAME",
-        paylod
+        type: ORDER_BY_ALPHABETICAL,
+        payload
+    }
+}
+
+export function filterDogsByTemperament(payload) {
+    return {
+        type: FILTER_DOGS_BY_TEMPERAMENT,
+        payload
+    }
+}
+
+export function orderWeight(payload) {
+    return {
+        type: ORDER_BY_WEIGHT,
+        payload
     }
 }
 
 export function filterDogsByCreated (payload) {
     return {
-        type: "FILTER_BY_CREATED",
+        type: FILTER_BY_CREATED,
         payload
     }
 }

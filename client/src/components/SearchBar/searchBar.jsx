@@ -2,14 +2,15 @@ import react from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getDogName } from "../../actions/index";
+import Paginado from "../Pagination/pagination";
 
 export default function SearchBar() {
 
     const dispatch = useDispatch()
     const [name, setName] = useState("")
 
+
     function handleInputChange(e){
-        console.log(e)
         e.preventDefault();
         setName(e.target.value)
     }
@@ -30,8 +31,8 @@ export default function SearchBar() {
                 <input
                     type="text"
                     placeholder="Buscar..."
-                    onKeyPress={e => e.key === 'Enter' && handleSubmit(e)}
-                    onChange={e=>handleInputChange(e)}
+                    onKeyPress={e => e.key === 'Enter' && handleSubmit(e) }
+                    onChange={e => handleInputChange(e)}
                 />
                 <button type="submit" onClick={(e)=>handleSubmit(e)}>Buscar</button>
             </div>

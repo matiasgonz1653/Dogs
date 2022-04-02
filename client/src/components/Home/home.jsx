@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import Card from "../Dog/dog";
 import Paginado from "../Pagination/pagination"
 import SearchBar from "../SearchBar/searchBar";
-//import TemperamentSelect from "./temperamentSelect";
 import {
     getDogs,
     getDogTemperament,
@@ -34,6 +33,7 @@ export default function Home() {
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
+
 
     useEffect(() => {
         dispatch(getDogs());

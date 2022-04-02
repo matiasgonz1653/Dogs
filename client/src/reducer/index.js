@@ -14,13 +14,13 @@ const initialState = {
     dogs: [],
     temperaments: [],
     allDogs: [],
-    detail:[]
 }
 
 
 function rootReducer(state = initialState, action) {
     
     switch (action.type) {
+
         case GET_DOGS:
             return {
                 ...state,

@@ -21,20 +21,22 @@ function rootReducer(state = initialState, action) {
                 temperaments: action.payload
             }
         
-        case "FILTER_BY_TEMPERAMET":
-            const allDogs = state.allDogs;
-            let filteredDogs = [];
-            if(action.payload === "Todos") {
-                filteredDogs = allDogs
-            } else {
-                for (let i = 0; i < allDogs.length; i++) {
-                    let found = allDogs[i].temperaments.find(t => t.name === action.payload);
-                    if(found) filteredDogs.push(allDogs[i])
+        case 'FILTER_DOGS_BY_TEMPERAMENT':
+            const allDogs3 = state.dogsAll
+            const tempDogs = allDogs3.filter(dog => {
+                if(dog.temperaments){
+                    const temperament = dog.temperaments.map( dog => dog.name)
+                    return temperament.includes(action.payload)}
+                if (dog.temperament) { 
+                    return dog.temperament.includes(action.payload)
                 }
-            }
+                return null
+            })
+
             return {
                 ...state,
-                dogs: filteredDogs
+                dogs: action.payload === 'Temps' ? allDogs3 : tempDogs,
+
             }
         
         case "FILTER_BY_WEIGHT":
@@ -105,8 +107,15 @@ function rootReducer(state = initialState, action) {
             );
             return {
                 ...state,
-                dog:createdFilter
+                dogs:createdFilter
             }
+        
+        case "GET_DOG_NAME":
+            return {
+                ...state,
+                dogs: action.payload
+            }
+        
         default:
             return state;
     }

@@ -1,13 +1,16 @@
 import React from "react";
 
-export default function TemperamentsSelect ({allTemperaments, handleFilterByTemperament}) {
+function TemperamentSelect ({allTemperaments, handleFilterByTemperament}) {
+    
     return (
-        <select onChange={handleFilterByTemperament}>
-            <option disabled selected>Temperaments</option>
-            <option value="Todos">All</option>
-            {allTemperaments.map(t => (
-                <option value={t.name}>{t.name}</option>
-            ))}
-        </select>
+        <div>
+            <select onChange={e=>handleFilterByTemperament(e)}>
+                <option disabled selected>Temperaments</option>
+                <option value="Todos">All</option>
+                {allTemperaments.map(t => (
+                    <option value={t.name}>{t.name}</option>
+                ))}
+            </select>
+        </div>
     );
 };

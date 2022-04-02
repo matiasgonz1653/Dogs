@@ -1,45 +1,53 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDogs, getTemperaments ,filterTemperamets, filterWeight, filterAlphabetical, filterCreated} from "../actions";
 import { Link } from "react-router-dom";
-import Dogs from "./dog";
-import Paginado from "./pagination"
-import TemperamentsSelect from "./temperamentSelect";
+import Card from "../Dog/dog";
+import Paginado from "../Pagination/pagination"
+import SearchBar from "../SearchBar/searchBar";
+//import TemperamentSelect from "./temperamentSelect";
+import {
+    getDogs,
+    getDogTemperament,
+    filterDogsByTemperament,
+    filterWeight,
+    filterAlphabetical,
+    filterDogsByCreated
+} from "../../actions/index";
 
 
 export default function Home() {
     const dispatch = useDispatch();
-    const allDogs = useSelector((state) => state.dogs);
-    const allTemperaments = useSelector((state) => state.temperament);
+    const allDogs = useSelector((state) => state.dogs); //reducer
+    const allTemperaments = useSelector((state) => state.temperaments);
 
 
     const [orden, setOrden] = useState("")
-    const [currentPage, setcurrentPage] = useState(1)
-    const [dogsOnPage, setDogs] = useState(8)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [dogsOnPage, setDogsOnPage] = useState(8)
     const indexLastDog = currentPage * dogsOnPage;
     const indexFristDog = indexLastDog - dogsOnPage;
     const currentDog = allDogs.slice(indexFristDog, indexLastDog);
 
     const paginado = (pageNumber) => {
-        setcurrentPage(pageNumber)
+        setCurrentPage(pageNumber)
     }
 
     useEffect(() => {
         dispatch(getDogs());
-        dispatch(getTemperaments());
+        dispatch(getDogTemperament());
     },[]);
 
-    function handleClick(e) {
+    function handleClickVolverACargar(e) {
         e.preventDefault();
         dispatch(getDogs());
     }
 
-
-    function handleFilterByTemperament(e) {
+    function handleFilterDogsByTemperament(e) {
         e.preventDefault();
-        dispatch(filterTemperamets(e.target.value))
+        dispatch(filterDogsByTemperament(e.target.value));
     }
+    
 
     function handleFilterByWeight(e) {
         e.preventDefault();
@@ -49,22 +57,22 @@ export default function Home() {
     function handleFilterByAlphabetical(e) {
         e.preventDefault();
         dispatch(filterAlphabetical(e.target.value));
-        setcurrentPage(1);
+        setCurrentPage(1);
         setOrden(`${ e.target.value }`);
     }
 
     function handleFilterCreate(e) {
         e.preventDefault();
-        dispatch(filterCreated(e.target.value));
-        setcurrentPage(1);
+        dispatch(filterDogsByCreated(e.target.value));
+        setCurrentPage(1);
     }
 
 
     return (
         <div>
-            <Link to="/dogs">Crear DOG</Link>
+            <Link to="/dog">Crear DOG</Link>
             <h1>perritos lindos</h1>
-            <button onClick={e=>{handleClick(e)}}>
+            <button onClick={e=>{handleClickVolverACargar(e)}}>
                 volver a cargar los perros
             </button>
             <div>
@@ -74,40 +82,60 @@ export default function Home() {
                     <option value="Des">Z-A</option>
                 </select>
 
-                <select onClick={e=>handleFilterByWeight(e)}>
+                <select onChange={e=>handleFilterByWeight(e)}>
                     <option disabled selected>Filtrado por peso</option>
                     <option value="min_weight">Minimo</option>
                     <option value="max_weight">Maximo</option>
                 </select>
 
-                <select onClick={e=>handleFilterCreate(e)}>
+                <select onChange={e=>filterDogsByCreated(e)}>
                     <option value="All">Todos</option>
                     <option value="Create">Creados</option>
                     <option value="api">Existentes</option>
                 </select>
 
-                {/*  <TemperamentsSelect
-                    allTemperaments={allTemperaments}
-                    handleFilterByTemperament={handleFilterByTemperament}
-                /> */}
+                <select onChange={(e) => handleFilterDogsByTemperament(e)}>
+                    <option hidden>Dog's temperaments</option>
+                    {allTemperaments.map((temperament) => (
+                        <option value={temperament}>{temperament}</option>
+                    ))}
+                </select>
+                
+
+                {/* <select onChange={(e)=> handleFilterDogsByTemperament(e)}>
+                    <option value="Temps">Temperaments</option>
+                        {allTemperaments.map((temp) => (
+                            <option value={temp}>{temp}</option>
+                        ))}
+                </select> */}
+                
+                {/* <select onChange={e=>handleFilterByTemperament(e)}>
+                    <option disabled selected>Temperaments</option>
+                    <option value="Todos">All</option>
+                    {allTemperaments.map(t => (
+                        <option value={t}>{t}</option>
+                    ))}
+                </select> */}
 
                 <Paginado
                     dogsOnPage={dogsOnPage}
                     allDogs={allDogs.length}
                     paginado={paginado}
                 />
+                <SearchBar placeholder = "busca a tu doge!" />
                 <div>
                 {
                     currentDog?.map(d => {
                         return (
-                        <Dogs
+                        <Card
                             id={d.ID}
                             name={d.name}
                             temperament={d.temperament}
-                            image={d.image}
+                            temperaments={d.temperaments}
+                            image={d.image?d.image:d.image}
                             weight={d.weight}
                             height={d.height}
-                        ></Dogs>
+                        ></Card>
                         )
                     })
                 }

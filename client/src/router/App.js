@@ -10,9 +10,9 @@ function App() {
       <div className="App">
         <Routes>
         <Route path="/" element={<LandingPage/>}/>
-        <Route exact path="/home/createDog" component={<DogCreate/>}/>
         <Route exact path="/home" element={<Home />}/>
-        <Route path="/home/:id" element={<DogDetail/>}/>
+        <Route exact path="/home/:id" element={<DogDetail/>}/>
+        <Route exact path="/home/createDog" component={<DogCreate/>}/>
         </Routes>
       </div>
   );

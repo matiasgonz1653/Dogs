@@ -30,9 +30,10 @@ export function getDetail(payload) {
     return async function (dispatch){
     try {
         var json = await axios.get(`http://localhost:3001/dogs/${payload}`)
+        console.log(json.data[0])
         return dispatch({
             type: GET_DETAIL,
-            payload: json
+            payload: json.data
         });
     } catch (error) {
         alert("error al buscar perro por ID")

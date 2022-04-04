@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Card from "../Dog/dog";
+import Card from "../Card/dog";
 import Paginado from "../Pagination/pagination"
 import SearchBar from "../SearchBar/searchBar";
 import {
@@ -19,7 +19,6 @@ export default function Home() {
     const dispatch = useDispatch();
     const allDogs = useSelector((state) => state.dogs); //reducer
     const allTemperaments = useSelector((state) => state.temperaments);
-
     const [orden, setOrden] = useState("")
 
 
@@ -40,6 +39,9 @@ export default function Home() {
         dispatch(getDogTemperament());
     },[]);
 
+    function handleRefresh() {
+        window.location.reload(false);
+    }
 
     function handleOrderByAlphabetical(e) {
         e.preventDefault();
@@ -74,7 +76,18 @@ export default function Home() {
         <div>
             <Link to="/home/createDog">Crear DOG</Link>
             <h1>perritos lindos</h1>
-            
+            <button
+                type="submit"
+                onClick={handleRefresh}
+                className="refresh"
+            ><img
+                    width="20px" height="20px"
+                    className="icon"
+                    src="https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-refresh-2.png"
+                    alt="">
+                </img>
+            </button>
+
             <div>
 
                 <select onChange={(e)=>handleOrderByAlphabetical(e)}>
@@ -115,11 +128,10 @@ export default function Home() {
                     currentDog?.map(d => {
                         return (
                             <Card
-                                id={d.ID}
+                                id={d.id}
                                 name={d.name}
                                 temperament={d.temperament}
-                                temperaments={d.temperaments}
-                                image={d.image?d.image:d.image}
+                                image={d.image}
                                 weight={d.weight}
                                 height={d.height}
                             ></Card>
@@ -127,9 +139,7 @@ export default function Home() {
                     })
                 }
                 </div>
-
             </div>
-        
         </div>
     )
 

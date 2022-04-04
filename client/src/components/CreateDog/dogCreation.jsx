@@ -3,9 +3,6 @@ import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import {getDogTemperament, postDog} from "../../actions/index"
 
-function refreshPage() {
-    window.location.reload(false);
-}
 
 const validate = function(input){
     let errors = {}
@@ -28,7 +25,7 @@ const validate = function(input){
         errors.minimHeight = "Completing with a *MINIMAL HEIGHT* is required!"
     }
     if (!input.maximHeight) {
-       errors.maximHeight = "Completing with a *MAXIMAL HEIGHT* is required!"
+        errors.maximHeight = "Completing with a *MAXIMAL HEIGHT* is required!"
     }
     if  (!input.minimWeight) {
         errors.minimWeight = "Completing with a *MINIMAL WEIGHT* is required!"
@@ -50,6 +47,9 @@ export default function DogCreate(){
     const temperament = useSelector((state) => state.temperaments)
     const [errors, setErrors] = useState ({})
     
+    useEffect(() => {
+        dispatch(getDogTemperament())
+    }, []);
     
     const [input, setInput] = useState({
         name: "",
@@ -62,18 +62,16 @@ export default function DogCreate(){
         temperament: []
     })
     
+    function refreshPage() {
+        window.location.reload(false);
+    }
+
     function handleDelete(t) {
         setInput({
             ...input,
             temperament: input.temperament.filter(temp => temp !== t)
         })
     }
-    // function handleDelete(el){
-    //     setInput({
-    //         ...input,
-    //         temperament: input.temperament.filter(temp => temp !== el)
-    //     })
-    // }
 
 
     function handleChange(e){
@@ -114,12 +112,6 @@ export default function DogCreate(){
         }
     }
 
-
-
-
-    useEffect(() => {
-        dispatch(getDogTemperament())
-    }, [dispatch]);
 
     return(
         <div className="backgroundd">
@@ -244,7 +236,7 @@ export default function DogCreate(){
                     {input.temperament.map(el =>
                     <div className="temperamentsItems">
                         <p>{el}</p>
-                        <button className="x" onClick={()=>handleDelete(el)}>x</button>
+                        {/* <button className="x" onClick={()=>handleDelete(el)}>x</button> */}
                     </div>
                     )}
             </form>
@@ -252,4 +244,4 @@ export default function DogCreate(){
         </div>
     )
 
-                        }
+}

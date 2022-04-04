@@ -13,7 +13,7 @@ import {
 const initialState = {
     dogs: [],
     temperaments: [],
-    allDogs: [],
+    allDogs: []
 }
 
 
@@ -43,7 +43,7 @@ function rootReducer(state = initialState, action) {
         case GET_DETAIL:
             return {
                 ...state,
-                detail : action.payload
+                dogs : action.payload
             }
         
         case POST_DOG:
@@ -125,7 +125,7 @@ function rootReducer(state = initialState, action) {
                     })
                 }
             }
-        
+
         
         case FILTER_DOGS_BY_TEMPERAMENT:
             console.log(action)

@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Card({ image, name, temperament, weight, height , id }) {
+    
     let temp = "";
-    typeof temperament === "object"
-        ? temp = temperament.map(t => {
+    typeof temperament === "object" ?
+        temp = temperament.map(t => {
             return t.name
-        }).join(", ")
-        : temperament = temperament
+        }).join(", ") : temperament = temperament
     
     return (
         <div>

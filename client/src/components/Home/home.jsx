@@ -80,12 +80,13 @@ export default function Home() {
                 type="submit"
                 onClick={handleRefresh}
                 className="refresh"
-            ><img
-                    width="20px" height="20px"
-                    className="icon"
-                    src="https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-refresh-2.png"
-                    alt="">
-                </img>
+            >
+            <img
+                width="20px" height="20px"
+                className="icon"
+                src="https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-refresh-2.png"
+                alt="">
+            </img>
             </button>
 
             <div>

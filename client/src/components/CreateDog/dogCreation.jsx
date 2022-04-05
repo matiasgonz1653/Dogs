@@ -7,37 +7,37 @@ import {getDogTemperament, postDog} from "../../actions/index"
 const validate = function(input){
     let errors = {}
     if (!input.name){
-        errors.name = "Completing with a *BREED'S NAME* is required!"
+        errors.name = "Ingresar un Nombre a la raza de perros"
     }
     if (input.minimHeight > input.maximHeight){
-        errors.minimHeight = "*MIN HEIGHT* must not surmount the *MAX HEIGHT* value!"
-    }
-    if (input.minimWeight > input.maximWeight){
-        errors.minimWeight = "*MIN WEIGHT* must not surmount the *MAX WEIGHT* value!"
+        errors.minimHeight = "El Tamaño Minimo es mayor a su tamaño maximo"
     }
     if (input.minimHeight <= 10){
-        errors.minimHeight = "*MIN HEIGHT* should be higher than 10 CM!" 
-    }
-    if (input.maximWeight <= 2){
-        errors.maximWeight = "*MAX WEIGHT* should be higher than 2 KG!" 
+        errors.minimHeight = "El tamaño minimo debe de ser mayor a 10cm" 
     }
     if (!input.minimHeight) {
-        errors.minimHeight = "Completing with a *MINIMAL HEIGHT* is required!"
+        errors.minimHeight = "Ingresa un valor para el tamaño minimo de la raza "
     }
     if (!input.maximHeight) {
-        errors.maximHeight = "Completing with a *MAXIMAL HEIGHT* is required!"
+        errors.maximHeight = "Ingresa un valor para el tamaño maximo de la raza "
+    }
+    if (input.minimWeight > input.maximWeight){
+        errors.minimWeight = "El peso Minimo es mayor a su peso maximo"
+    }
+    if (input.maximWeight <= 2){
+        errors.maximWeight = "El peso maximo no puede ser menor a 2Kg" 
     }
     if  (!input.minimWeight) {
-        errors.minimWeight = "Completing with a *MINIMAL WEIGHT* is required!"
+        errors.minimWeight = "Ingresa un valor para el peso minimo de la raza"
     }
     if (!input.maximWeight) {
-        errors.maximWeight = "Completing with a *MAXIMAL HEIGHT* is required!"
+        errors.maximWeight = "Ingresa un valor para el peso maximo de la raza"
     }
     if (input.lifeSpan < 0) {
-        errors.lifeSpan = "A life span cannot be lower than 0!"
+        errors.lifeSpan = "La esperanza de vida debe de ser mayor a 1 año"
     }
     if (input.lifeSpan > 21){
-        errors.lifeSpan = "Please, select a reasonable life span for your dog."
+        errors.lifeSpan = "Ingresar una esperaza de vida razonable"
     }
     return errors
 }
@@ -49,7 +49,7 @@ export default function DogCreate(){
     
     useEffect(() => {
         dispatch(getDogTemperament())
-    }, []);
+    }, [dispatch]);
     
     const [input, setInput] = useState({
         name: "",
@@ -61,18 +61,12 @@ export default function DogCreate(){
         image: "",
         temperament: []
     })
+
+    console.log(input)
     
     function refreshPage() {
         window.location.reload(false);
     }
-
-    function handleDelete(t) {
-        setInput({
-            ...input,
-            temperament: input.temperament.filter(temp => temp !== t)
-        })
-    }
-
 
     function handleChange(e){
         setInput({
@@ -94,11 +88,11 @@ export default function DogCreate(){
         setErrors(validate(input))
         const errorSaver = validate(input)
         if(Object.values(errorSaver).length !== 0 ) {
-            alert("Please, fulfill ALL of the required conditions in the form so you could create your dog")
+            alert("Error, Completa los campos con valores que cumplan las condiciones para crear tu raza de perro")
         } else {
             dispatch(postDog(input))
             navigate("/home")
-        alert("Dog created successfully!")
+        alert("Perro creado")
         setInput({
             name: "",
             minimHeight: "", 
@@ -107,7 +101,7 @@ export default function DogCreate(){
             maximWeight: "",
             lifeSpan: "",
             image: "",
-            temperament: [],
+            temperament: []
         })
         }
     }
@@ -117,7 +111,13 @@ export default function DogCreate(){
         <div className="backgroundd">
 
             <button type="submit" onClick={refreshPage} className="refreshh">
-			<img className="icon" src="https://htmlacademy.ru/assets/icons/reload-6x-white.png" alt=""></img></button>
+			    <img
+                    width="20px" height="20px"
+                    className="icon"
+                    src="https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-refresh-2.png"
+                    alt="">
+                </img>
+            </button>
             
             <Link to="/home" className="buttonn">⬅ Home</Link>
             
@@ -126,13 +126,13 @@ export default function DogCreate(){
 
             <hr />
 
-            <h1 className="titlee">Create your own Doggo!</h1> 
+            <h1 className="titlee">Crea tu raza</h1> 
 
                 <div className="breed">
-                    <label>Breed</label>
+                    <label>Nombre raza</label>
                     <input className="breedInput"
                     type= "text"
-                    value= {input.name}
+                    value= {input.name = input.name.substring(0, 1).toUpperCase() + input.name.substring(1)}
                     name="name"
                     placeholder="Breed's name"
                     onChange={(e) => handleChange(e)}/>
@@ -140,7 +140,7 @@ export default function DogCreate(){
                 </div>
 
                 <div className="minHeight">
-                    <label>Min Height</label>
+                    <label>Tamaño Minimo</label>
                     <input className="minHeightInput"
                     type= "number"
                     min="1"
@@ -154,7 +154,7 @@ export default function DogCreate(){
                 </div>
 
                 <div className="maxHeight">
-                    <label>Max Height</label>
+                    <label>Tamaño maximo</label>
                     <input className="maxHeightInput"
                     type= "number"
                     min="1"
@@ -168,7 +168,7 @@ export default function DogCreate(){
                 </div>
 
                 <div className="minWeight">
-                    <label>Min Weight</label>
+                    <label>peso Minimo</label>
                     <input className="minWeightInput"
                     type="number"
                     min="1"
@@ -182,7 +182,7 @@ export default function DogCreate(){
                 </div>
 
                 <div className="maxWeight">
-                    <label>Max Weight</label>
+                    <label>Peso maximo</label>
                     <input className="maxWeightInput"
                     type="number"
                     min="1"
@@ -196,7 +196,7 @@ export default function DogCreate(){
                 </div>
 
                 <div className="lifeSpan">
-                    <label>Life Span</label>
+                    <label>Esepranza de vida</label>
                     <input className="lifeSpanInput"
                     type="number"
                     min="1"
@@ -210,19 +210,19 @@ export default function DogCreate(){
                 </div>
 
                 <div className="picture">
-                    <label>Picture</label>
+                    <label>Imagen</label>
                     <input className="pictureInput"
                     type="text"
                     value= {input.image}
                     name="image"
-                    placeholder="Breed's picture URL"
+                    placeholder="Picture URL..."
                     onChange={(e) => handleChange(e)}/>
                     </div>
 
 
                     <div>
                     <select onChange={(e) => handleSelect(e)}  className="listTemps">
-                        <option hidden>Dog's temperaments</option>
+                        <option hidden>Temperamentos del perro</option>
                         {temperament.map((temperament) => (
                             <option value={temperament}>{temperament}</option>
                         ))}
@@ -230,13 +230,16 @@ export default function DogCreate(){
                 </div>
                     
                 <div>
-                    <button className="createDogButton" type="submit" disabled = {input.temperament.length < 2 || input.temperament.length >= 5 ? true : false}>Create Dog</button>
+                        <button
+                            className="createDogButton"
+                            type="submit"
+                            disabled={input.temperament.length < 1 || input.temperament.length >= 5 ? true : false}
+                        >Create Dog</button>
                 </div>
                     
                     {input.temperament.map(el =>
                     <div className="temperamentsItems">
                         <p>{el}</p>
-                        {/* <button className="x" onClick={()=>handleDelete(el)}>x</button> */}
                     </div>
                     )}
             </form>

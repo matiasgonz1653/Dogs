@@ -37,7 +37,7 @@ export default function Home() {
     useEffect(() => {
         dispatch(getDogs());
         dispatch(getDogTemperament());
-    },[]);
+    },[dispatch]);
 
     function handleRefresh() {
         window.location.reload(false);

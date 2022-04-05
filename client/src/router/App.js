@@ -12,7 +12,7 @@ function App() {
         <Route path="/" element={<LandingPage/>}/>
         <Route exact path="/home" element={<Home />}/>
         <Route exact path="/home/:id" element={<DogDetail/>}/>
-        <Route exact path="/home/createDog" component={<DogCreate/>}/>
+        <Route exact path="/home/createDog" element={<DogCreate/>}/>
         </Routes>
       </div>
   );

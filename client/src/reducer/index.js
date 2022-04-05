@@ -27,42 +27,46 @@ function rootReducer(state = initialState, action) {
                 dogs: action.payload,
                 allDogs: action.payload
             }
-        
+
+
         case GET_TEMPERAMENTS:
             return {
                 ...state,
                 temperaments: action.payload
             }
-        
+
+
         case GET_DOG_NAME:
             return {
                 ...state,
                 dogs: action.payload
             }
-        
+
+
         case GET_DETAIL:
             return {
                 ...state,
                 dogs : action.payload
             }
-        
+
+
         case POST_DOG:
             return {
                 ...state
             }
-        
-        
+
+
         case ORDER_BY_ALPHABETICAL:
             if (action.payload === "default"){
                 return {
                     ...state,
-                    dogs: state.dogs
+                    dogs: state.allDogs
                 }
             }
             if (action.payload === "Asc") {
                 return {
                     ...state,
-                    dogs: state.allDogs.sort(function (a, b) {
+                    dogs: state.dogs.sort(function (a, b) {
                         if (a.name > b.name) {
                             return 1;
                         }
@@ -72,11 +76,11 @@ function rootReducer(state = initialState, action) {
                         return 0
                     }) 
                 }
-            } 
+            }
             if (action.payload === "Des"){
                 return{
                     ...state,
-                    dogs: state.allDogs.sort (function (a, b) {
+                    dogs: state.dogs.sort (function (a, b) {
                         if (a.name > b.name) {
                             return -1;
                         }
@@ -87,20 +91,20 @@ function rootReducer(state = initialState, action) {
                     })
                 }
             }
-        
-        
+
+
         case ORDER_BY_WEIGHT:
             console.log(action)
             if (action.payload === "default") {
                 return {
                     ...state,
-                    dogs: state.allDogs
+                    dogs: state.dogs
                 }
             }
             if (action.payload === "min_weight") {
                 return {
                     ...state,
-                    dogs: state.allDogs.sort((a, b) => {
+                    dogs: state.dogs.sort((a, b) => {
                         if (parseInt(a.weight[0]) > parseInt(b.weight[0])) {
                             return 1;
                         }
@@ -114,7 +118,7 @@ function rootReducer(state = initialState, action) {
             if (action.payload === "max_weight") {
                 return {
                     ...state,
-                    dogs: state.allDogs.sort((a, b) => {
+                    dogs: state.dogs.sort((a, b) => {
                         if (parseInt(a.weight[1]) > parseInt(b.weight[1])) {
                             return -1;
                         }
@@ -126,18 +130,25 @@ function rootReducer(state = initialState, action) {
                 }
             }
 
-        
+
         case FILTER_DOGS_BY_TEMPERAMENT:
             console.log(action)
-            const allDogs = state.allDogs;
+            const dogs = state.allDogs;
+            dogs.map((dog) => {
+                typeof dog.temperament === "object"
+                    ? dog.temperament = dog.temperament.map(t => { return t.name })
+                        .join(", ")
+                    : dog.temperament = dog.temperament
+            })
             const temperamentFilter =
-                action.payload === 'All' ? allDogs
-                    : allDogs.filter((e)=>
+                action.payload === 'All' ? dogs
+                    : dogs.filter((e)=>
                         e.temperament?.includes(action.payload))              
             return {
                 ...state,
                 dogs: temperamentFilter,
             }
+
 
         case FILTER_BY_CREATED:
             console.log(action)
@@ -154,13 +165,12 @@ function rootReducer(state = initialState, action) {
                                 return e;
                             }
                         }
-                    })
+                })
             );
             return {
                 ...state,
                 dogs:createdFilter
             }
-        
         default:
             return state;
     }

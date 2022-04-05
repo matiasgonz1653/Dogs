@@ -1,8 +1,7 @@
-import react from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getDogName } from "../../actions/index";
-import Paginado from "../Pagination/pagination";
+
 
 export default function SearchBar() {
 

@@ -98,7 +98,7 @@ function rootReducer(state = initialState, action) {
             if (action.payload === "default") {
                 return {
                     ...state,
-                    dogs: state.dogs
+                    dogs: state.allDogs
                 }
             }
             if (action.payload === "min_weight") {
@@ -141,7 +141,7 @@ function rootReducer(state = initialState, action) {
                     : dog.temperament = dog.temperament
             })
             const temperamentFilter =
-                action.payload === 'All' ? dogs
+                action.payload === 'All' ? state.allDogs
                     : dogs.filter((e)=>
                         e.temperament?.includes(action.payload))              
             return {
@@ -154,7 +154,7 @@ function rootReducer(state = initialState, action) {
             console.log(action)
             const Dogs = state.allDogs;
             const createdFilter = (
-                action.payload === "All" ? Dogs :
+                action.payload === "All" ? state.allDogs :
                 Dogs.filter((e) => {
                         if (action.payload==="Create") {
                             if (e.createdAtDb) {

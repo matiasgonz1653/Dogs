@@ -1,0 +1,64 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+*
+{
+    box-sizing: border-box;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    text-decoration: none;
+}
+
+.background {
+    background: url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    overflow: hidden;
+    background-attachment: fixed;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    border: 0;
+}
+
+.welcomeText{
+    outline: 100px;
+    outline-color: aqua;
+    background-color: transparent;
+    color:rgb(48, 46, 46);
+    text-shadow: 0.5 0.5 1px black;
+    position:absolute;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 40px;
+    font-weight:bolder;
+    top: 35%;
+}
+.button
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 30px;
+    border: 2px solid rgb(21, 35, 236);
+    margin: 40px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: rgb(20, 0, 109);
+    transition: 0.7s;
+    border-radius: 9px;
+}
+
+.button:hover 
+{
+    transition-delay: 0s;
+    color: #000;
+    box-shadow: 0 0 10px rgb(74, 60, 141),
+                0 0 20px rgb(48, 58, 145),
+                0 0 40px rgb(66, 75, 151),
+                0 0 80px rgb(49, 19, 156),
+                0 0 160px rgba(23, 0, 153, 0.068);                 
+}

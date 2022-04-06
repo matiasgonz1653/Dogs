@@ -13,7 +13,7 @@ export default function Card({ image, name, temperament, weight, height , id }) 
         <div>
             <h2>{name}</h2>
             <h4>{`Peso ${weight[0]} - ${weight[1]} Kg`}</h4>
-            <h4>{`Tamaño ${height[0]} - ${height[1]} Cm`}</h4>
+            {/* <h4>{`Tamaño ${height[0]} - ${height[1]} Cm`}</h4> */}
             <h3>{temp?temp:temperament}</h3>
             <Link to={`/home/${id}`}>
             <img src={image} alt="la imagen no funciona" whidth="200px" height="250px"></img>

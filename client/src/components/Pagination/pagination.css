@@ -1,0 +1,76 @@
+.Pagination__ul {
+    list-style-type: none;
+    padding: 10px;
+    margin-bottom: 0;
+    position: relative; bottom: 205px;
+    margin-top: 157.9px;
+}
+.Pagination__Li {
+    padding: 10px;
+}
+.Pagination__Button {
+    height: 48px;
+    width: 65px;
+    margin: 10.46px; 
+    border-radius: 17px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: rgb(255, 255, 255);
+    -webkit-box-reflect: below 5px linear-gradient(transparent, #0002);
+    transition: 0.3s;
+    cursor: pointer;
+    border: transparent;
+    background-color: #000000a2;
+}
+
+.Pagination__Button:hover {
+    transition-delay: 0s;
+    color: rgb(255, 255, 255);
+    transform: translateY(2px);
+}
+
+.Pagination__Button:active
+{
+    transition-delay: 0s;
+    color: rgb(255, 255, 255);
+    box-shadow: 0 0 7px rgb(214, 214, 212),
+                0 0 10px rgb(214, 214, 212),
+                0 0 20px rgb(214, 214, 212),
+                0 0 30px rgb(214, 214, 212),
+                0 0 40px rgb(214, 214, 212);        
+                transform: translateY(2px);  
+}
+
+.advanceButton{
+    position: relative;
+    bottom: 180px;
+    left: 1720px;
+    height: 30px;
+    width: 65px;
+    border-radius: 17px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: rgb(255, 255, 255);
+    -webkit-box-reflect: below 5px linear-gradient(transparent, #0002);
+    transition: 0.3s;
+    cursor: pointer;
+    border: transparent;
+    background-color: #000000a2;
+}
+
+.backButton {
+    position: relative;
+    bottom: 180px;
+    left: 58px;
+    height: 30px;
+    width: 65px;
+    border-radius: 17px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: rgb(255, 255, 255);
+    -webkit-box-reflect: below 5px linear-gradient(transparent, #0002);
+    transition: 0.3s;
+    cursor: pointer;
+    border: transparent;
+    background-color: #000000a2;
+}

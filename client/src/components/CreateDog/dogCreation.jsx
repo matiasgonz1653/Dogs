@@ -6,8 +6,12 @@ import {getDogTemperament, postDog} from "../../actions/index"
 
 const validate = function(input){
     let errors = {}
+    
     if (!input.name){
         errors.name = "Ingresar un Nombre a la raza de perros"
+    }
+    if (!input.name.match(/^[A-Za-z\s]+$/)){
+        errors.name = "El nombre debe contener unicamente letas"
     }
     if (input.minimHeight > input.maximHeight){
         errors.minimHeight = "El Tamaño Minimo es mayor a su tamaño maximo"

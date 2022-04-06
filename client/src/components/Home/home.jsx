@@ -13,7 +13,8 @@ import {
     orderWeight,
     orderAlphabetical,
 } from "../../actions/index";
-
+import "./home.css"
+import reload from "../img/reload.png"
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -70,47 +71,49 @@ export default function Home() {
         setCurrentPage(1);
         setOrden(`${ e.target.value }`);
     }
-
-
+    
+    
     return (
-        <div>
+        <div className="home">
             <Link to="/home/createDog">Crear DOG</Link>
             <h1>perritos lindos</h1>
             <button
                 type="submit"
                 onClick={handleRefresh}
                 className="refresh"
-            >
+                >
             <img
                 width="20px" height="20px"
                 className="icon"
-                src="https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-refresh-2.png"
+                src={reload}
                 alt="">
             </img>
             </button>
 
-            <div>
+            <div className="lists">
 
-                <select onChange={(e)=>handleOrderByAlphabetical(e)}>
+                <SearchBar />
+
+                <select onChange={(e)=>handleOrderByAlphabetical(e)} className="listAlpha">
                     <option value="default">Orden Alfabetico</option>
                     <option value="Asc">A-Z</option>
                     <option value="Des">Z-A</option>
                 </select>
 
-                <select onChange={e=>handleOrderByWeight(e)}>
-                    <option value="default">Filtrado por peso</option>
+                <select onChange={e=>handleOrderByWeight(e)} className="listAlpha">
+                    <option value="default">Ordenado por peso</option>
                     <option value="min_weight">Minimo</option>
                     <option value="max_weight">Maximo</option>
                 </select>
 
-                <select onChange={(e) => handleFilterDogsByTemperament(e)}>
+                <select onChange={(e) => handleFilterDogsByTemperament(e)} className="listAlpha">
                     <option value="All">temperamentos</option>
                     {allTemperaments.map((temperament) => (
                         <option value={temperament}>{temperament}</option>
                     ))}
                 </select>
 
-                <select onChange={(e)=>handleFilterCreate(e)}>
+                <select onChange={(e)=>handleFilterCreate(e)} className="listAlpha">
                     <option value="All">Todos</option>
                     <option value="Create">Creados</option>
                     <option value="Api">Existentes</option>
@@ -122,9 +125,8 @@ export default function Home() {
                     paginado={paginado}
                 />
 
-                <SearchBar/>
 
-                <div>
+                <div className="positions">
                 {
                     currentDog?.map(d => {
                         return (

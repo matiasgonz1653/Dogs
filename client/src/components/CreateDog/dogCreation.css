@@ -72,9 +72,6 @@
     grid-template-rows: repeat(3, 1fr);
     grid-column-gap: 5px;
     grid-row-gap: 5px;
-    /* position: fixed; */
-    /* flex-direction: column; */
-    /* align-items: center; */
     border: 2px solid rgb(0, 0, 0);
     backdrop-filter: blur(0.5ex);
     margin: 2ex;
@@ -82,20 +79,12 @@
     width: 97%;
     height: 80%;
     box-shadow: 0ex 0ex 5ex 1ex rgb(0, 0, 0);
-    /* margin-bottom: 20%; */
     border-radius: 5ex;
+    font-size: 25px;
 }
 
 .containers{
     display: flex;
-    /* position: relative; */
-    /* bottom: 1ex; */
-    /* flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    text-align: center; */
-    /* align-items: center; */
     margin-top: 5ex;
     margin-left: 10ex;
     margin-right: 10ex;
@@ -108,8 +97,6 @@
     text-align: center;
     background-color: rgba(0, 0, 0, 0.377);
     border-radius: 5ex;
-    /* border-bottom-left-radius: 5ex;
-    border-top-left-radius: 5ex; */
     border: none;
     font-size: 18px;
     height: 30px;
@@ -129,12 +116,6 @@
     align-items: center;
     flex-direction: column;
     margin: 2ex;
-    /* width: 20ex;
-    font-size: 2ex;
-    text-align: center;
-    left: 50%;
-    top: 0ex;
-    margin: 5ex; */
 }
 
 .minHeight {
@@ -146,20 +127,6 @@
     align-items: center;
     flex-direction: column;
     margin: 2ex;
-    /* width: 20ex;
-    font-size: 2ex;
-    text-align: center;
-    left: 50%;
-    top: 0ex;
-    margin: 5ex; */
-    /* position: relative;
-    bottom: 1ex;
-    justify-content: center;
-    height: 5rem;
-    font-size: 2rem;
-    text-align: center;
-    color: rgb(223, 223, 223);
-    text-shadow: 2px 3px 4px #000000; */
 }
 
 .maxHeight {
@@ -171,23 +138,6 @@
     align-items: center;
     flex-direction: column;
     margin: 2ex;
-    /* width: 20ex;
-    font-size: 2ex;
-    text-align: center;
-    left: 50%;
-    top: 0ex;
-    margin: 5ex; */
-    /* position: relative;
-    bottom: 50px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    height: 5rem;
-    font-size: 2rem;
-    color: rgb(223, 223, 223);
-    text-shadow: 2px 3px 4px #000000; */
 }
 
 .minWeight {
@@ -199,23 +149,6 @@
     align-items: center;
     flex-direction: column;
     margin: 2ex;
-    /*  width: 20ex;
-    font-size: 2ex;
-    text-align: center;
-    left: 50%;
-    top: 0ex;
-    margin: 5ex; */
-    /* position: relative;
-    bottom: 35px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    height: 5rem;
-    font-size: 2rem;
-    text-align: center;
-    color: rgb(223, 223, 223);
-    text-shadow: 2px 3px 4px #000000; */
 }
 
 .maxWeight {
@@ -227,23 +160,6 @@
     align-items: center;
     flex-direction: column;
     margin: 2ex;
-    /* width: 20ex;
-    font-size: 2ex;
-    text-align: center;
-    left: 50%;
-    top: 0ex;
-    margin: 5ex; */
-    /* position: relative;
-    bottom: 20px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    height: 5rem;
-    font-size: 2rem;
-    text-align: center;
-    color: rgb(223, 223, 223);
-    text-shadow: 2px 3px 4px #000000; */
 }
 
 .lifeSpan {
@@ -255,23 +171,6 @@
     align-items: center;
     flex-direction: column;
     margin: 2ex;
-    /*  width: 20ex;
-    font-size: 2ex;
-    text-align: center;
-    left: 50%;
-    top: 0ex;
-    margin: 5ex; */
-    /* position: relative;
-    bottom: 5px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    height: 5rem;
-    font-size: 2rem;
-    color: rgb(223, 223, 223);
-    text-shadow: 2px 3px 4px #000000; */
 }
 
 .picture {
@@ -283,23 +182,6 @@
     align-items: center;
     flex-direction: column;
     margin: 2ex;
-    /* width: 20ex;
-    font-size: 2ex;
-    text-align: center;
-    left: 50%;
-    top: 0ex;
-    margin: 5ex; */
-    /* position: relative;
-    top: 10px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    height: 5rem;
-    font-size: 2rem;
-    color: rgb(223, 223, 223);
-    text-shadow: 2px 3px 4px #000000; */
 }
 
 .listTemps{
@@ -334,6 +216,7 @@
 .imgRemoveTemperament{
     position:relative;
     left: -0.7ex;
+    top: 0.1ex;
     width: 3ex;
     height: 3ex;
 }

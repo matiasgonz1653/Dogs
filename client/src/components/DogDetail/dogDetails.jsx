@@ -4,7 +4,9 @@ import {useParams} from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail, getDogs, getDogTemperament } from "../../actions/index";
 import { Link } from "react-router-dom";
+import img from "../img/back.png"
 import "./dogDetails.css"
+
 
 export default function DogDetail() {
     useEffect(() => {
@@ -29,7 +31,11 @@ export default function DogDetail() {
                 <div className="card-contenedor">
                     <div className="card-content">
                         <Link to='/home'>
-                                <button>Volver</button>
+                            <img
+                                src={img}
+                                alt=""
+                                className="imgBackDetail"
+                            />
                         </Link>
                         <h1 className="name">{selectedDog[0].name}</h1>
                         <div className="wightHeight">

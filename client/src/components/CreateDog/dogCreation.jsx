@@ -2,7 +2,10 @@ import React, {useState, useEffect} from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import {getDogTemperament, postDog} from "../../actions/index"
-
+import icon from "../img/reload.png"
+import remove from "../img/remove.png"
+import iconHome from "../img/home1.png"
+import "./dogCreation.css"
 
 const validate = function(input){
     let errors = {}
@@ -85,6 +88,14 @@ export default function DogCreate(){
             temperament : [...input.temperament, e.target.value]
         })
     }
+
+    const handleDelete = (e) => {
+        setInput({
+            ...input,
+            temperament: input.temperament.filter(el => el !== e)
+        })
+    }
+
     const navigate = useNavigate()
 
     function handleSubmit(e){
@@ -112,116 +123,135 @@ export default function DogCreate(){
 
 
     return(
-        <div className="backgroundd">
+        <div className="fondo">
 
-            <button type="submit" onClick={refreshPage} className="refreshh">
+            <div className="titleRefreshHome">
+            <button
+                type="submit"
+                onClick={refreshPage}
+                className="buttonRefresh">
 			    <img
-                    width="20px" height="20px"
-                    className="icon"
-                    src="https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-refresh-2.png"
+                    className="iconRefresh"
+                        src={icon}
+                        width="35px"
                     alt="">
                 </img>
             </button>
             
-            <Link to="/home" className="buttonn">⬅ Home</Link>
+            <div className="homeButton">
+                <Link
+                    to="/home"
+                    className="linkHome"
+                    >
+                        <img
+                        src={iconHome}
+                            alt=""
+                            width="35px"
+                        className="iconHome"
+                    />
+                    ⬅ Home
+                </Link>
+            </div>
             
-            <div className="card-containerr">
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <h1 className="tituleCrear">Crea tu raza</h1> 
 
-            <hr />
+            </div>
 
-            <h1 className="titlee">Crea tu raza</h1> 
+            <div className="card-containers">
 
-                <div className="breed">
-                    <label>Nombre raza</label>
-                    <input className="breedInput"
-                    type= "text"
-                    value= {input.name = input.name.substring(0, 1).toUpperCase() + input.name.substring(1)}
-                    name="name"
-                    placeholder="Breed's name"
-                    onChange={(e) => handleChange(e)}/>
-                    {errors.name && <p className="error">{errors.name}</p>}
-                </div>
+                <div className="containers">
 
-                <div className="minHeight">
-                    <label>Tamaño Minimo</label>
-                    <input className="minHeightInput"
-                    type= "number"
-                    min="1"
-                    max="99"
-                    value= {input.minimHeight}
-                    name="minimHeight"
-                    placeholder="Minimal height"
-                    onChange={(e) => handleChange(e)}/>
-                    {errors.minimHeight && 
-                        <p className="error">{errors.minimHeight}</p>}
-                </div>
-
-                <div className="maxHeight">
-                    <label>Tamaño maximo</label>
-                    <input className="maxHeightInput"
-                    type= "number"
-                    min="1"
-                    max="99"
-                    value= {input.maximHeight}
-                    name="maximHeight"
-                    placeholder="Maximal height"
-                    onChange={(e) => handleChange(e)}/>
-                    {errors.maximHeight && 
-                        <p className="error">{errors.maximHeight}</p>}
-                </div>
-
-                <div className="minWeight">
-                    <label>peso Minimo</label>
-                    <input className="minWeightInput"
-                    type="number"
-                    min="1"
-                    max="99"
-                    value= {input.minimWeight}
-                    name="minimWeight"
-                    placeholder="Minimal weight"
-                    onChange={(e) => handleChange(e)}/>
-                    {errors.minimWeight && 
-                        <p className="error">{errors.minimWeight}</p>}
-                </div>
-
-                <div className="maxWeight">
-                    <label>Peso maximo</label>
-                    <input className="maxWeightInput"
-                    type="number"
-                    min="1"
-                    max="99"
-                    value= {input.maximWeight}
-                    name="maximWeight"
-                    placeholder="Maximal weight"
-                    onChange={(e) => handleChange(e)}/>
-                    {errors.maximWeight &&
-                        <p className="error">{errors.maximWeight}</p>}
-                </div>
-
-                <div className="lifeSpan">
-                    <label>Esepranza de vida</label>
-                    <input className="lifeSpanInput"
-                    type="number"
-                    min="1"
-                    max="21"
-                    value= {input.lifeSpan}
-                    name="lifeSpan"
-                    placeholder="Breed's life span"
-                    onChange={(e) => handleChange(e)}/> 
-                    {errors.lifeSpan &&
-                    <label className="error">{errors.lifeSpan}</label>}
-                </div>
-
-                <div className="picture">
-                    <label>Imagen</label>
-                    <input className="pictureInput"
-                    type="text"
-                    value= {input.image}
-                    name="image"
-                    placeholder="Picture URL..."
-                    onChange={(e) => handleChange(e)}/>
+                    <div className="breed">
+                        <label>Nombre raza</label>
+                        <input className="inputs"
+                        type= "text"
+                        value= {input.name = input.name.substring(0, 1).toUpperCase() + input.name.substring(1)}
+                        name="name"
+                        placeholder="Breed's name"
+                        onChange={(e) => handleChange(e)}/>
+                        {errors.name && <p className="error">{errors.name}</p>}
                     </div>
+
+                    <div className="minHeight">
+                        <label>Tamaño Minimo</label>
+                        <input className="inputs"
+                        type= "number"
+                        min="1"
+                        max="99"
+                        value= {input.minimHeight}
+                        name="minimHeight"
+                        placeholder="Minimal height"
+                        onChange={(e) => handleChange(e)}/>
+                        {errors.minimHeight && 
+                            <p className="error">{errors.minimHeight}</p>}
+                    </div>
+
+                    <div className="maxHeight">
+                        <label>Tamaño maximo</label>
+                        <input className="inputs"
+                        type= "number"
+                        min="1"
+                        max="99"
+                        value= {input.maximHeight}
+                        name="maximHeight"
+                        placeholder="Maximal height"
+                        onChange={(e) => handleChange(e)}/>
+                        {errors.maximHeight && 
+                            <p className="error">{errors.maximHeight}</p>}
+                    </div>
+
+                    <div className="minWeight">
+                        <label>peso Minimo</label>
+                        <input className="inputs"
+                        type="number"
+                        min="1"
+                        max="99"
+                        value= {input.minimWeight}
+                        name="minimWeight"
+                        placeholder="Minimal weight"
+                        onChange={(e) => handleChange(e)}/>
+                        {errors.minimWeight && 
+                            <p className="error">{errors.minimWeight}</p>}
+                    </div>
+
+                    <div className="maxWeight">
+                        <label>Peso maximo</label>
+                        <input className="inputs"
+                        type="number"
+                        min="1"
+                        max="99"
+                        value= {input.maximWeight}
+                        name="maximWeight"
+                        placeholder="Maximal weight"
+                        onChange={(e) => handleChange(e)}/>
+                        {errors.maximWeight &&
+                            <p className="error">{errors.maximWeight}</p>}
+                    </div>
+
+                    <div className="lifeSpan">
+                        <label>Esepranza de vida</label>
+                        <input className="inputs"
+                        type="number"
+                        min="1"
+                        max="21"
+                        value= {input.lifeSpan}
+                        name="lifeSpan"
+                        placeholder="Breed's life span"
+                        onChange={(e) => handleChange(e)}/> 
+                        {errors.lifeSpan &&
+                        <label className="error">{errors.lifeSpan}</label>}
+                    </div>
+
+                    <div className="picture">
+                        <label>Imagen</label>
+                        <input className="inputs"
+                        type="text"
+                        value= {input.image}
+                        name="image"
+                        placeholder="Picture URL..."
+                        onChange={(e) => handleChange(e)}/>
+                    </div>
+                </div>
 
 
                     <div>
@@ -231,22 +261,35 @@ export default function DogCreate(){
                             <option value={temperament}>{temperament}</option>
                         ))}
                     </select>
-                </div>
-                    
+                    </div>
+
+                    <div className="temperamentsItems">
+                    {input.temperament.map(el =>
+                            <p className="itemsTemperaments">
+                                {el}
+                                <button
+                                    className="buttonRemove"
+                                    onClick={() => handleDelete(el)}
+                                >
+                                <img
+                                    src={remove} 
+                                    height="15px"
+                                    weight="15px"
+                                    alt="delete"
+                                    className="imgRemoveTemperament"
+                                    />
+                                </button>
+                            </p>
+                    )}  
+                    </div>
                 <div>
                         <button
                             className="createDogButton"
                             type="submit"
                             disabled={input.temperament.length < 1 || input.temperament.length >= 10 ? true : false}
+                            onClick={(e) => handleSubmit(e)}
                         >Create Dog</button>
-                </div>
-                    
-                    {input.temperament.map(el =>
-                    <div className="temperamentsItems">
-                        <p>{el}</p>
                     </div>
-                    )}
-            </form>
             </div>
         </div>
     )

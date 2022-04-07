@@ -36,6 +36,18 @@ body{
     margin-top: 0.5rem;
 }
 
+.imgBackDetail{
+    border-radius: 5ex;
+    position: fixed;
+    left: 2ex;
+    width: 9ex;
+    background-color: #00000046;
+}
+
+.imgBackDetail:hover{
+    transform: scale(1.2);
+}
+
 .name {
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
@@ -71,5 +83,5 @@ body{
 
 .pictureDetalle{
     width: auto;
-    height: 60ex;
+    height: 55ex;
 }

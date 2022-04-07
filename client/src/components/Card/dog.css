@@ -14,7 +14,7 @@
     box-shadow: 0ex 0ex 4ex 0.5ex rgb(25, 49, 0);
 }
 
-.image-container img {
+.image-container{
     overflow: hidden;
     height: 200px;
     border: 1px solid rgb(0, 0, 0);

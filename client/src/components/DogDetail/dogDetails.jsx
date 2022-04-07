@@ -4,7 +4,7 @@ import {useParams} from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail, getDogs, getDogTemperament } from "../../actions/index";
 import { Link } from "react-router-dom";
-//import LoadingScreen from "../LoadingScreen/Loading";
+import "./dogDetails.css"
 
 export default function DogDetail() {
     useEffect(() => {
@@ -24,19 +24,27 @@ export default function DogDetail() {
     }).join(", ") : selectedDog[0].temperament = selectedDog[0].temperament
     
     return (
-        <div>
+        <div className="walpaperDetalle">
             {
-                <div className="card-container">
-                    <div className="wallpaper">
-                    <Link to='/home'>
-                            <button>Volver</button>
-                    </Link>
-                    <h1 className="name">{selectedDog[0].name}</h1>
-                    <h3 className="wight">Peso: {selectedDog[0].weight[0] + - + selectedDog[0].weight[1]} kg</h3>
-                    <h3 className="height">Tamaño: {selectedDog[0].height[0] + - + selectedDog[0].height[1]} cm</h3>
-                    <h3 className="lifeSpan">Esperanza de vida: {selectedDog.createdAtDb ? selectedDog[0].lifeSpan + "years" : selectedDog[0].lifeSpan} </h3>
-                    <h2 className="temperameents">Temperamentos: {selectedDog[0].createdAtDb ? temp : selectedDog[0].temperament }.</h2>
-                    <img src ={selectedDog[0].image} alt="" width="800px" height="600px" className="pcture"/>
+                <div className="card-contenedor">
+                    <div className="card-content">
+                        <Link to='/home'>
+                                <button>Volver</button>
+                        </Link>
+                        <h1 className="name">{selectedDog[0].name}</h1>
+                        <div className="wightHeight">
+                            <h3 className="wightHeightLifeSpan">Peso: {selectedDog[0].weight[0] + - + selectedDog[0].weight[1]} kg</h3>
+                            <h3 className="wightHeightLifeSpan">Tamaño: {selectedDog[0].height[0] + - + selectedDog[0].height[1]} cm</h3>
+                        </div>
+                        <h3 className="wightHeightLifeSpan">Esperanza de vida: {selectedDog.createdAtDb ? selectedDog[0].lifeSpan + "years" : selectedDog[0].lifeSpan} </h3>
+                        <h2 className="temperamentDetalle">Temperamentos: {selectedDog[0].createdAtDb ? temp : selectedDog[0].temperament }.</h2>
+                        <div className="divImgDetail">
+                        <img
+                            src={selectedDog[0].image}
+                            alt=""
+                            className="pictureDetalle"
+                        />
+                        </div>
                     </div>
                 </div>
             }

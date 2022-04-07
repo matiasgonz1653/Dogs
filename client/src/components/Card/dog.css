@@ -1,0 +1,55 @@
+.card-container {
+    backdrop-filter: blur(6px);
+    width: 300px;
+    overflow: hidden;
+    transition: 0.3s;
+    animation: ease-in-out;
+    box-shadow: 0px 0px 10px 0px rgb(42, 80, 3);
+    margin-bottom: 20%;
+    border-radius: 20px;
+}
+
+.card-container:hover {
+    transform: scale(1.1);
+    box-shadow: 0ex 0ex 4ex 0.5ex rgb(25, 49, 0);
+}
+
+.image-container img {
+    overflow: hidden;
+    height: 200px;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.image{
+    width: 100%;
+    height: 100%;
+}
+
+.card-content {
+    margin: 15px;
+    margin-top: 0.5rem;
+}
+
+.nameHome {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    color:antiquewhite;
+    text-shadow: 0.1px 0.1px 5px rgb(0, 0, 0);
+    text-align: center;
+    text-decoration-line:underline;
+}
+
+.temperamentsHome {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    text-shadow: 0ex 0ex 1ex cornsilk;
+}
+
+.weightHome {
+    display: flex;
+    justify-content: center;
+    color:rgb(20, 148, 20);
+    text-shadow: 0.1ex 0.1ex 0ex black;
+    font-family: Arial;
+}

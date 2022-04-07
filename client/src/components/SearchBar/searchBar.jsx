@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getDogName } from "../../actions/index";
-
+import lupa from "../img/lupa.png"
+import "./searchBar.css"
 
 export default function SearchBar() {
 
@@ -25,15 +26,25 @@ export default function SearchBar() {
     }
 
     return (
-        <div>
+        <div className="buscador">
             <div>
                 <input
                     type="text"
                     placeholder="Buscar..."
                     onKeyPress={e => e.key === 'Enter' && handleSubmit(e) }
                     onChange={e => handleInputChange(e)}
+                    className="campoBuscar"
                 />
-                <button type="submit" onClick={(e)=>handleSubmit(e)}>Buscar</button>
+                <button
+                    type="submit"
+                    onClick={(e) => handleSubmit(e)}
+                    className="botonBuscar">
+                    <img
+                        src={lupa}
+                        alt=""
+                        className="iconBuscar"
+                    />
+                </button>
             </div>
         </div>
     )

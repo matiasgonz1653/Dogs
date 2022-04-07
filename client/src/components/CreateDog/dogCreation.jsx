@@ -237,7 +237,7 @@ export default function DogCreate(){
                         <button
                             className="createDogButton"
                             type="submit"
-                            disabled={input.temperament.length < 1 || input.temperament.length >= 5 ? true : false}
+                            disabled={input.temperament.length < 1 || input.temperament.length >= 10 ? true : false}
                         >Create Dog</button>
                 </div>
                     

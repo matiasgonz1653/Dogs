@@ -75,45 +75,51 @@ export default function Home() {
     
     return (
         <div className="home">
-            <Link to="/home/createDog">Crear DOG</Link>
-            <h1>perritos lindos</h1>
-            <button
-                type="submit"
-                onClick={handleRefresh}
-                className="refresh"
-                >
-            <img
-                width="20px" height="20px"
-                className="icon"
-                src={reload}
-                alt="">
-            </img>
-            </button>
+            <div className="divCrear">
+            <Link
+                to="/home/createDog"
+                className="crearDog"
+            >Crear raza</Link>    
+            </div>
+            <h1 className="titulo">Perros App</h1>
 
-            <div className="lists">
+            <div>
 
-                <SearchBar />
+                <button
+                    type="submit"
+                    onClick={handleRefresh}
+                    className="refresh"
+                    >
+                <img
+                    width="20px" height="20px"
+                    className="icon"
+                    src={reload}
+                    alt="">
+                </img>
+                </button>
 
-                <select onChange={(e)=>handleOrderByAlphabetical(e)} className="listAlpha">
+                <SearchBar/>
+
+                <select onChange={(e)=>handleOrderByAlphabetical(e)} className="lista">
                     <option value="default">Orden Alfabetico</option>
                     <option value="Asc">A-Z</option>
                     <option value="Des">Z-A</option>
                 </select>
 
-                <select onChange={e=>handleOrderByWeight(e)} className="listAlpha">
+                <select onChange={e=>handleOrderByWeight(e)} className="lista">
                     <option value="default">Ordenado por peso</option>
                     <option value="min_weight">Minimo</option>
                     <option value="max_weight">Maximo</option>
                 </select>
 
-                <select onChange={(e) => handleFilterDogsByTemperament(e)} className="listAlpha">
+                <select onChange={(e) => handleFilterDogsByTemperament(e)} className="lista">
                     <option value="All">temperamentos</option>
                     {allTemperaments.map((temperament) => (
                         <option value={temperament}>{temperament}</option>
                     ))}
                 </select>
 
-                <select onChange={(e)=>handleFilterCreate(e)} className="listAlpha">
+                <select onChange={(e)=>handleFilterCreate(e)} className="lista">
                     <option value="All">Todos</option>
                     <option value="Create">Creados</option>
                     <option value="Api">Existentes</option>

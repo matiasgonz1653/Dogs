@@ -14,7 +14,7 @@ export default function DogDetail() {
     
     useEffect(() => {
         dispatch(getDetail(id));
-    })
+    },[])
     
     const selectedDog = useSelector((state) => state.dogs)
     

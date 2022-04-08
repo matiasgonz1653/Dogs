@@ -14,7 +14,7 @@ const validate = function(input){
         errors.name = "Ingresar un Nombre a la raza de perros"
     }
     if (!input.name.match(/^[A-Za-z\s]+$/)){
-        errors.name = "El nombre debe contener unicamente letas"
+        errors.name = "El nombre debe contener unicamente letras"
     }
     if  (!input.minimWeight) {
         errors.minimWeight = "Ingresa un valor para el peso minimo de la raza"

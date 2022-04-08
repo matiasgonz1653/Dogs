@@ -26,11 +26,11 @@ export function getDogs() {
     }
 }
 
-export function getDetail(payload) {
+export function getDetail(id) {
     console.log("getDetails")
     return async function (dispatch){
     try {
-        var json = await axios.get(`http://localhost:3001/dogs/${payload}`)
+        var json = await axios.get(`http://localhost:3001/dogs/${id}`)
         console.log(json.data)
         return dispatch({
             type: GET_DETAIL,

@@ -27,6 +27,7 @@ export function getDogs() {
 }
 
 export function getDetail(payload) {
+    console.log("getDetails")
     return async function (dispatch){
     try {
         var json = await axios.get(`http://localhost:3001/dogs/${payload}`)

@@ -107,6 +107,11 @@
     background-color: white;
 }
 
+.error{
+    color: brown;
+    font-size: small;
+}
+
 .breed {
     display: flex;
     position: relative;
@@ -197,6 +202,7 @@
     display: flex;
     flex-wrap:wrap;
     margin: 0ex;
+    margin-right: 4ex;
 }
 
 .itemsTemperaments{
@@ -207,10 +213,15 @@
     position:relative;
     left: 0.5ex;
     top: 0.5ex;
-    background-color: rgba(92, 4, 4, 0.664);
-    border-radius: 10ex;
+    background-color: rgba(151, 5, 5, 0.747);
+    border-radius: 5ex;
+    border-color: transparent;
     width: 4ex;
     height: 4ex;
+}
+
+.buttonRemove:hover{
+    transform: scale(1.2);
 }
 
 .imgRemoveTemperament{
@@ -228,14 +239,21 @@
     left: 0ex;
     top: 0px;
     padding: 15px 30px;
-    border: 2px solid rgb(43, 255, 0);
+    border: 2px solid rgba(0, 0, 0, 0.685);
     margin: 40px;
     text-transform: uppercase;
+    font-size: 1.1ex;
     font-weight: 600;
     letter-spacing: 0.5ex;
-    color: rgb(0, 0, 0);
+    color: rgba(0, 0, 0, 0.651);
     transition: 0.3s;
     border-radius: 2ex;
+}
+
+
+.createDogButton:disabled {
+    background-color: rgba(0, 0, 0, 0.315);
+    color: black;
 }
 
 .createDogButton:hover 
@@ -246,9 +264,4 @@
                 0 0 40px rgb(26, 153, 26),
                 0 0 80px rgb(54, 148, 54),
                 0 0 160px rgba(13, 153, 0, 0.068);                 
-}
-
-.createDogButton:active {
-    background-color: rgb(245, 245, 245);
-    transform: translateY(1px);
 }

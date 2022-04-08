@@ -16,11 +16,11 @@ const validate = function(input){
     if (!input.name.match(/^[A-Za-z\s]+$/)){
         errors.name = "El nombre debe contener unicamente letas"
     }
-    if (input.minimHeight > input.maximHeight){
-        errors.minimHeight = "El Tamaño Minimo es mayor a su tamaño maximo"
+    if  (!input.minimWeight) {
+        errors.minimWeight = "Ingresa un valor para el peso minimo de la raza"
     }
-    if (input.minimHeight <= 10){
-        errors.minimHeight = "El tamaño minimo debe de ser mayor a 10cm" 
+    if (!input.maximWeight) {
+        errors.maximWeight = "Ingresa un valor para el peso maximo de la raza"
     }
     if (!input.minimHeight) {
         errors.minimHeight = "Ingresa un valor para el tamaño minimo de la raza "
@@ -28,23 +28,24 @@ const validate = function(input){
     if (!input.maximHeight) {
         errors.maximHeight = "Ingresa un valor para el tamaño maximo de la raza "
     }
-    if (input.minimWeight > input.maximWeight){
-        errors.minimWeight = "El peso Minimo es mayor a su peso maximo"
+    
+    if (parseInt(input.minimHeight) <= 10){
+        errors.minimHeight = "El tamaño minimo debe de ser mayor a 10cm" 
     }
-    if (input.maximWeight <= 2){
+    if (parseInt(input.maximWeight) <= 2){
         errors.maximWeight = "El peso maximo no puede ser menor a 2Kg" 
     }
-    if  (!input.minimWeight) {
-        errors.minimWeight = "Ingresa un valor para el peso minimo de la raza"
-    }
-    if (!input.maximWeight) {
-        errors.maximWeight = "Ingresa un valor para el peso maximo de la raza"
-    }
-    if (input.lifeSpan < 0) {
+    if (parseInt(input.lifeSpan) < 0) {
         errors.lifeSpan = "La esperanza de vida debe de ser mayor a 1 año"
     }
-    if (input.lifeSpan > 21){
+    if (parseInt(input.lifeSpan) > 21){
         errors.lifeSpan = "Ingresar una esperaza de vida razonable"
+    }
+    if (parseInt(input.minimWeight) > parseInt(input.maximWeight)){
+        errors.minimWeight = "El peso Minimo es mayor a su peso maximo"
+    }
+    if (parseInt(input.minimHeight) > parseInt(input.maximHeight)){
+        errors.minimHeight = "El Tamaño Minimo es mayor a su tamaño maximo"
     }
     return errors
 }

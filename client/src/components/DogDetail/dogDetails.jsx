@@ -1,24 +1,23 @@
 import React from "react";
-import { useEffect } from "react";
-import {useParams} from "react-router-dom"
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail, getDogs, getDogTemperament } from "../../actions/index";
+import { getDetail } from "../../actions/index";
 import { Link } from "react-router-dom";
 import img from "../img/back.png"
 import "./dogDetails.css"
 
 
 export default function DogDetail() {
-    useEffect(() => {
-        dispatch(getDetail(id));
-    },[])
-    
-    const selectedDog = useSelector((state) => state.dogs)
     const dispatch = useDispatch()
     const {id} = useParams()
-    console.log(selectedDog)
     
-
+    useEffect(() => {
+        dispatch(getDetail(id));
+    })
+    
+    const selectedDog = useSelector((state) => state.dogs)
+    
     let temp = "";
     typeof selectedDog[0].temperament === "object"
     ? temp = selectedDog[0].temperament.map(t => {
@@ -27,7 +26,6 @@ export default function DogDetail() {
     
     return (
         <div className="walpaperDetalle">
-            {
                 <div className="card-contenedor">
                     <div className="card-content">
                         <Link to='/home'>
@@ -53,7 +51,6 @@ export default function DogDetail() {
                         </div>
                     </div>
                 </div>
-            }
         </div>
     )
 }

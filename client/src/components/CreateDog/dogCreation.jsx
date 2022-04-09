@@ -278,14 +278,19 @@ export default function DogCreate(){
                     <select onChange={(e) => handleSelect(e)}  className="listTemps">
                         <option hidden>Temperamentos del perro</option>
                         {temperament.map((temperament) => (
-                            <option value={temperament}>{temperament}</option>
+                            <option
+                                key={temperament}
+                                value={temperament}
+                            >{temperament}</option>
                         ))}
                     </select>
                     </div>
 
                     <div className="temperamentsItems">
                     {input.temperament.map(el =>
-                            <p className="itemsTemperaments">
+                        <p
+                            key={el}
+                            className="itemsTemperaments">
                                 {el}
                                 <button
                                     className="buttonRemove"

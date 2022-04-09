@@ -99,7 +99,7 @@ export default function Home() {
 
                 <SearchBar/>
 
-                <select onChange={handleOrderByAlphabetical} className="lista">
+                <select onChange={e=>handleOrderByAlphabetical(e)} className="lista">
                     <option value="default">Orden Alfabetico</option>
                     <option value="Asc">A-Z</option>
                     <option value="Des">Z-A</option>

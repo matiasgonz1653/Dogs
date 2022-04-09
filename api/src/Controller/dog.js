@@ -9,7 +9,7 @@ const getApiInfo = async () => {
 
         const heightMM = []
         d.height.metric.split("-")?.forEach(element => {
-            heightMM.push(element.trim());
+            heightMM.push(parseInt(element.trim()));
         })
         if (!heightMM[1]) {
             heightMM.push(heightMM[0])
@@ -17,10 +17,18 @@ const getApiInfo = async () => {
 
         const weightMM = []
         d.weight.metric.split("-")?.forEach(element => {
-            weightMM.push(element.trim());
+            weightMM.push(parseInt(element.trim()));
         })
         if (!weightMM[1]) {
             weightMM.push(weightMM[0])
+        }
+
+        const life_SpanAA = []
+        d.life_span.split("-")?.forEach(element => {
+            life_SpanAA.push(parseInt(element.trim()));
+        })
+        if (!life_SpanAA[1]) {
+            life_SpanAA.push(life_SpanAA[0])
         }
 
         return{
@@ -28,7 +36,7 @@ const getApiInfo = async () => {
             name: d.name,
             height: heightMM,
             weight: weightMM,
-            lifeSpan: d.life_span,
+            lifeSpan: life_SpanAA,
             image: d.image.url,
             temperament: d.temperament
         }
@@ -51,19 +59,26 @@ const getDBinfo = async () => {
     const dogInfo = await dogInDB.map(d => {
         const heightMM = []
         d.height.split("-")?.forEach(element => {
-            heightMM.push(element.trim());
+            heightMM.push(parseInt(element.trim()));
         })
         if (!heightMM[1]) {
             heightMM.push(heightMM[0])
         }
 
-
         const weightMM = []
         d.weight.split("-")?.forEach(element => {
-            weightMM.push(element.trim());
+            weightMM.push(parseInt(element.trim()));
         })
         if (!weightMM[1]) {
             weightMM.push(weightMM[0])
+        }
+
+        const life_SpanAA = []
+        d.life_span.split("-")?.forEach(element => {
+            life_SpanAA.push(parseInt(element.trim()));
+        })
+        if (!life_SpanAA[1]) {
+            life_SpanAA.push(life_SpanAA[0])
         }
 
         return{
@@ -71,7 +86,7 @@ const getDBinfo = async () => {
             name: d.name,
             height: heightMM,
             weight: weightMM,
-            lifeSpan: d.life_span,
+            lifeSpan: life_SpanAA,
             image: d.image,
             temperament: d.temperaments,
             createdAtDb: d.createdAtDb,

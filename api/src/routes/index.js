@@ -48,7 +48,8 @@ router.post("/dog", async (req, res) => {
         maximHeight,
         minimWeight,
         maximWeight,
-        lifeSpan,
+        minLifeSpan,
+        maxLifeSpan,
         image,
         createdAtDb,
         temperament,
@@ -56,13 +57,13 @@ router.post("/dog", async (req, res) => {
 
     let height = minimHeight + " - " + maximHeight
     let weight = minimWeight + " - " + maximWeight
-
+    let life_span = minLifeSpan + " - " + maxLifeSpan
 
     let dog = await Dog.create({
         name,
         height,
         weight,
-        life_span: lifeSpan,
+        life_span,
         image: image ? image : "https://pbs.twimg.com/media/FGfgmSPWQAUDu4l.jpg",
         createdAtDb,
     });

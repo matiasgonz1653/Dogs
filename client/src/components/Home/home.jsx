@@ -13,18 +13,19 @@ import {
     orderWeight,
     orderAlphabetical,
 } from "../../actions/index";
+
 import "./home.css"
 import reload from "../img/reload.png"
 
+
 export default function Home() {
     const dispatch = useDispatch();
-    const allDogs = useSelector((state) => state.dogs); //reducer
+    const allDogs = useSelector((state) => state.dogs);
     const allTemperaments = useSelector((state) => state.temperaments);
-    const [orden, setOrden] = useState("")
+    const [setOrden] = useState("");
+    const [dogsOnPage,] = useState(8);
+    const [currentPage, setCurrentPage] = useState(1);
 
-
-    const [currentPage, setCurrentPage] = useState(1)
-    const [dogsOnPage, setDogsOnPage] = useState(8)
     const indexLastDog = currentPage * dogsOnPage;
     const indexFristDog = indexLastDog - dogsOnPage;
     
@@ -33,7 +34,6 @@ export default function Home() {
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
-
 
     useEffect(() => {
         dispatch(getDogs());
@@ -62,28 +62,27 @@ export default function Home() {
         e.preventDefault();
         dispatch(filterDogsByTemperament(e.target.value));
         setCurrentPage(1);
-        setOrden(`${ e.target.value }`);
     }
 
     function handleFilterCreate(e) {
         e.preventDefault();
         dispatch(filterDogsByCreated(e.target.value));
         setCurrentPage(1);
-        setOrden(`${ e.target.value }`);
     }
     
     
     return (
         <div className="home">
-            <div className="divCrear">
-            <Link
-                to="/home/createDog"
-                className="crearDog"
-            >Crear raza</Link>    
-            </div>
-            <h1 className="titulo">Perros App</h1>
-
             <div>
+                <div className="divCrear">
+                <Link
+                    to="/home/createDog"
+                    className="crearDog"
+                >Crear raza</Link>    
+                </div>
+                <h1 className="titulo">Perros App</h1>
+                <div>
+            </div>
 
                 <button
                     type="submit"
@@ -100,7 +99,7 @@ export default function Home() {
 
                 <SearchBar/>
 
-                <select onChange={(e)=>handleOrderByAlphabetical(e)} className="lista">
+                <select onChange={handleOrderByAlphabetical} className="lista">
                     <option value="default">Orden Alfabetico</option>
                     <option value="Asc">A-Z</option>
                     <option value="Des">Z-A</option>
@@ -115,7 +114,10 @@ export default function Home() {
                 <select onChange={(e) => handleFilterDogsByTemperament(e)} className="lista">
                     <option value="All">temperamentos</option>
                     {allTemperaments.map((temperament) => (
-                        <option value={temperament}>{temperament}</option>
+                        <option
+                            value={temperament}
+                            key={temperament}
+                        >{temperament}</option>
                     ))}
                 </select>
 
@@ -137,6 +139,7 @@ export default function Home() {
                     currentDog?.map(d => {
                         return (
                             <Card
+                                key={d.id}
                                 id={d.id}
                                 name={d.name}
                                 temperament={d.temperament}

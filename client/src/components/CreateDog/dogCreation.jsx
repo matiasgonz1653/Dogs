@@ -35,11 +35,14 @@ const validate = function(input){
     if (parseInt(input.maximWeight) <= 2){
         errors.maximWeight = "El peso maximo no puede ser menor a 2Kg" 
     }
-    if (parseInt(input.lifeSpan) < 0) {
-        errors.lifeSpan = "La esperanza de vida debe de ser mayor a 1 año"
+    if (parseInt(input.minLifeSpan) < 0) {
+        errors.minLifeSpan = "La esperanza de vida debe de ser mayor a 1 año"
     }
-    if (parseInt(input.lifeSpan) > 21){
-        errors.lifeSpan = "Ingresar una esperaza de vida razonable"
+    if (parseInt(input.maxLifeSpan) > 21){
+        errors.maxLifeSpan = "Ingresar una esperaza de vida razonable (menos a 21 años)"
+    }
+    if (parseInt(input.minLifeSpan) > parseInt(input.maxLifeSpan)){
+        errors.minLifeSpan = "La esperanza de vida Minima es mayor a su maxima"
     }
     if (parseInt(input.minimWeight) > parseInt(input.maximWeight)){
         errors.minimWeight = "El peso Minimo es mayor a su peso maximo"
@@ -65,7 +68,8 @@ export default function DogCreate(){
         maximHeight: "",
         minimWeight: "",
         maximWeight: "",
-        lifeSpan: "",
+        maxLifeSpan: "",
+        minLifeSpan: "",
         image: "",
         temperament: []
     })
@@ -115,7 +119,8 @@ export default function DogCreate(){
             maximHeight: "",
             minimWeight: "",
             maximWeight: "",
-            lifeSpan: "",
+            maxLifeSpan: "",
+            minLifeSpan: "",
             image: "",
             temperament: []
         })
@@ -229,18 +234,32 @@ export default function DogCreate(){
                             <p className="error">{errors.maximWeight}</p>}
                     </div>
 
-                    <div className="lifeSpan">
-                        <label>Esepranza de vida</label>
+                    <div className="minLifeSpan">
+                        <label>Esperanza de vida Minima</label>
                         <input className="inputs"
                         type="number"
                         min="1"
                         max="21"
-                        value= {input.lifeSpan}
-                        name="lifeSpan"
+                        value= {input.minLifeSpan}
+                        name="minLifeSpan"
                         placeholder="Breed's life span"
                         onChange={(e) => handleChange(e)}/> 
-                        {errors.lifeSpan &&
-                        <label className="error">{errors.lifeSpan}</label>}
+                        {errors.minLifeSpan &&
+                        <label className="error">{errors.minLifeSpan}</label>}
+                    </div>
+
+                    <div className="maxLifeSpan">
+                        <label>Esperanza de vida Maxima</label>
+                        <input className="inputs"
+                        type="number"
+                        min="1"
+                        max="21"
+                        value= {input.maxLifeSpan}
+                        name="maxLifeSpan"
+                        placeholder="Breed's life span"
+                        onChange={(e) => handleChange(e)}/> 
+                        {errors.maxLifeSpan &&
+                        <label className="error">{errors.maxLifeSpan}</label>}
                     </div>
 
                     <div className="picture">
@@ -287,7 +306,7 @@ export default function DogCreate(){
                         <button
                             className="createDogButton"
                             type="submit"
-                            disabled={input.temperament.length < 1 || input.temperament.length >= 10 ? true : false}
+                            disabled={input.temperament.length < 1 || input.temperament.length >= 15 ? true : false}
                             onClick={(e) => handleSubmit(e)}
                         >Create Dog</button>
                     </div>

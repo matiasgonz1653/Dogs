@@ -1,10 +1,12 @@
-body {
-    margin: 0;
-    padding: 0;
-}
-
 *{
     text-shadow: 1px 1px 4px #000000;
+}
+.body::-webkit-scrollbar{
+    background-color: rgb(0, 0, 0);
+}
+.body::-webkit-scrollbar-thumb{
+    background-color: rgb(0, 0, 0);
+    border-radius: 3ex;
 }
 
 .home {
@@ -71,7 +73,37 @@ body {
 .crearDog{
     color:antiquewhite;
 }
+
 .divCrear{
     background-color: #00000098;
     height: 3ex;
+}
+
+.divCrear:hover{
+    transform:scaleY(1.1);
+}
+
+.cargando{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    width: 10%;
+    height: 10%;
+    margin-top: 30ex;
+    margin-left: auto;
+    margin-right: auto;
+}
+.volver{
+    background-color: rgba(0, 0, 0, 0.322);
+    display:flexbox;
+    border: 5ex;
+    border-radius: 5em;
+    font-size: 2ex;
+    padding: 1ex;
+    height: 4ex;
+    width: 25ex;
+}
+.volver:hover{
+    background-color: aliceblue;
 }

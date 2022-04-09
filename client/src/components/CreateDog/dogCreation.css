@@ -72,20 +72,28 @@
     grid-template-rows: repeat(3, 1fr);
     grid-column-gap: 5px;
     grid-row-gap: 5px;
+    overflow:auto;
     border: 2px solid rgb(0, 0, 0);
     backdrop-filter: blur(0.5ex);
     margin: 2ex;
     margin-top: 1ex;
-    width: 97%;
-    height: 80%;
+    width: 96%;
+    height: 75%;
     box-shadow: 0ex 0ex 5ex 1ex rgb(0, 0, 0);
-    border-radius: 5ex;
+    border-radius: 2ex;
     font-size: 25px;
+}
+.card-containers::-webkit-scrollbar{
+    background-color: rgba(22, 196, 16, 0);
+}
+.card-containers::-webkit-scrollbar-thumb{
+    background-color: rgba(3, 53, 5, 0.425);
+    border-radius: 3ex;
 }
 
 .containers{
     display: flex;
-    margin-top: 5ex;
+    margin-top: 3ex;
     margin-left: 10ex;
     margin-right: 10ex;
     flex-wrap:wrap;
@@ -167,7 +175,18 @@
     margin: 2ex;
 }
 
-.lifeSpan {
+.minLifeSpan {
+    display: flex;
+    position: relative;
+    bottom: 0ex;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    flex-direction: column;
+    margin: 2ex;
+}
+
+.maxLifeSpan {
     display: flex;
     position: relative;
     bottom: 0ex;

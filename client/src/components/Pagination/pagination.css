@@ -18,7 +18,7 @@
 .paginationButton:hover {
     transition-delay: 0s;
     color: rgb(255, 255, 255);
-    transform: translateY(2px);
+    transform: translateY(1ex);
 }
 
 .paginationButton:active
@@ -26,5 +26,5 @@
     transition-delay: 0s;
     color: rgb(0, 255, 21);
     box-shadow: 0 0 40px rgb(59, 221, 10);        
-    transform: translateY(2px);  
+    transform: translateY(1ex);  
 }

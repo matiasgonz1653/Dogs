@@ -1,9 +1,3 @@
-
-
-body{
-    margin: 0;
-}
-
 .walpaperDetalle{
     background-image: url("../img/CIBMWs.webp");
     background-repeat: no-repeat;
@@ -18,6 +12,7 @@ body{
     position: fixed;
     flex-direction: column;
     align-items: center;
+    overflow:auto;
     backdrop-filter: blur(0.5ex);
     margin: 1ex;
     margin-top: 0.5ex;
@@ -30,6 +25,14 @@ body{
     border-radius: 20px;
     border: 2px solid rgb(0, 0, 0);
 }
+.card-contenedor::-webkit-scrollbar{
+    background-color: rgba(196, 133, 16, 0);
+}
+.card-contenedor::-webkit-scrollbar-thumb{
+    background-color: rgba(102, 68, 5, 0.589);
+    border-radius: 3ex;
+}
+
 
 .card-content {
     margin: 15px;
@@ -39,6 +42,7 @@ body{
 .imgBackDetail{
     border-radius: 5ex;
     position: fixed;
+    flex-direction: column;
     left: 2ex;
     width: 9ex;
     background-color: #00000046;

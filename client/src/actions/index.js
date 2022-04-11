@@ -17,9 +17,9 @@ export function getDogs() {
         try {
             var json = await axios.get("http://localhost:3001/dogs");
             return dispatch({
-                type: "GET_DOGS",
+                type: GET_DOGS,
                 payload: json.data,
-            })    
+            })
         } catch (error) {
             alert("conection failed");
         }

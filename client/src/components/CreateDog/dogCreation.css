@@ -33,6 +33,7 @@
     text-shadow: 0.1ex 0.1ex 0.2ex rgb(5, 39, 2);
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 1ex;
     width: 13ex;
 }
 
@@ -75,7 +76,7 @@
     overflow:auto;
     border: 2px solid rgb(0, 0, 0);
     backdrop-filter: blur(0.5ex);
-    margin: 2ex;
+    margin: 1.5ex;
     margin-top: 1ex;
     width: 96%;
     height: 75%;
@@ -116,8 +117,9 @@
 }
 
 .error{
-    color: brown;
+    color: rgb(255, 0, 0);
     font-size: small;
+    text-shadow: none;
 }
 
 .breed {
@@ -128,7 +130,7 @@
     margin-right: auto;
     align-items: center;
     flex-direction: column;
-    margin: 2ex;
+    margin: 1ex;
 }
 
 .minHeight {
@@ -139,7 +141,7 @@
     margin-right: auto;
     align-items: center;
     flex-direction: column;
-    margin: 2ex;
+    margin: 1ex;
 }
 
 .maxHeight {
@@ -150,7 +152,7 @@
     margin-right: auto;
     align-items: center;
     flex-direction: column;
-    margin: 2ex;
+    margin: 1ex;
 }
 
 .minWeight {
@@ -161,7 +163,7 @@
     margin-right: auto;
     align-items: center;
     flex-direction: column;
-    margin: 2ex;
+    margin: 1ex;
 }
 
 .maxWeight {
@@ -172,7 +174,7 @@
     margin-right: auto;
     align-items: center;
     flex-direction: column;
-    margin: 2ex;
+    margin: 1ex;
 }
 
 .minLifeSpan {
@@ -183,7 +185,7 @@
     margin-right: auto;
     align-items: center;
     flex-direction: column;
-    margin: 2ex;
+    margin: 1ex;
 }
 
 .maxLifeSpan {
@@ -194,7 +196,7 @@
     margin-right: auto;
     align-items: center;
     flex-direction: column;
-    margin: 2ex;
+    margin: 1ex;
 }
 
 .picture {
@@ -205,7 +207,7 @@
     margin-right: auto;
     align-items: center;
     flex-direction: column;
-    margin: 2ex;
+    margin: 1ex;
 }
 
 .listTemps{
@@ -214,7 +216,7 @@
     width: 30ex;
     height: 5ex;
     text-align: center;
-    margin: 0ex;
+    margin-top: 2ex;
 }
 
 .temperamentsItems{

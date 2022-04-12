@@ -1,14 +1,14 @@
 import {
+    GET_DOGS,
+    GET_DETAIL,
+    GET_TEMPERAMENTS,
+    GET_DOG_NAME,
+    POST_DOG,
     ORDER_BY_ALPHABETICAL,
     ORDER_BY_WEIGHT,
-    FILTER_BY_CREATED,
     FILTER_DOGS_BY_TEMPERAMENT,
-    GET_DETAIL,
-    GET_DOGS,
-    GET_DOG_NAME,
-    GET_TEMPERAMENTS,
-    POST_DOG,
-} from "../actions/index"
+    FILTER_BY_CREATED,
+} from "../actions/action"
 
 const initialState = {
     dogs: [],

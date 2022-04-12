@@ -12,7 +12,7 @@ router.get("/dogs", async function (req, res) {
 
     if (name) {
         const dogName = dogTotal.filter(d => d.name.toLowerCase().includes(name.toLowerCase()));
-        dogName.length ? res.status(200).send(dogName) : res.status(400).send("no se encontro le perro");
+        dogName.length ? res.status(200).send(dogName) : res.status(400).send("no se encontro el perro");
     } else {
         res.status(200).send(dogTotal);
     }
@@ -27,7 +27,7 @@ router.get("/dogs/:id", async (req, res) => {
         let dogId = await allDogs.filter((obj) => obj.id == id);
         dogId.length
         ? res.status(200).send(dogId)
-        : res.status(404).send("Doggo Not Found");
+        : res.status(404).send("Perro no encontrado");
     }
 });
 
@@ -41,7 +41,6 @@ router.get("/temperament", async (req, res) => {
 });
 
 router.post("/dog", async (req, res) => {
-    
     let {
         name,
         minimHeight,
@@ -74,7 +73,7 @@ router.post("/dog", async (req, res) => {
             name: temperament,
         },
     });
-    
+
     dog.addTemperament(temperamentDb);
     
     res.status(200).send("Perrito creado! :D");

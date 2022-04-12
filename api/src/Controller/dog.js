@@ -77,9 +77,6 @@ const getDBinfo = async () => {
         d.life_span.split("-")?.forEach(element => {
             life_SpanAA.push(parseInt(element.trim()));
         })
-        if (!life_SpanAA[1]) {
-            life_SpanAA.push(life_SpanAA[0])
-        }
 
         return{
             id: d.id,

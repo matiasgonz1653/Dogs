@@ -33,8 +33,14 @@ export default function DogDetail() {
                         </Link>
                         <h1 className="name">{selectedDog[0].name}</h1>
                         <div className="wightHeight">
-                            <h3 className="wightHeightLifeSpan">Peso: {`${selectedDog[0].weight[0]} - ${selectedDog[0].weight[1]}`} kg</h3>
-                            <h3 className="wightHeightLifeSpan">Tamaño: {`${selectedDog[0].height[0]} - ${selectedDog[0].height[1]}`} cm</h3>
+                            <h3 className="wightHeightLifeSpan">Peso: {
+                                selectedDog[0].weight[0]===selectedDog[0].weight[1]?
+                                    (`${selectedDog[0].weight[0]} - NaN años`) :
+                                    (`${selectedDog[0].weight[0]} - ${selectedDog[0].weight[1]} años`)} kg</h3>
+                            <h3 className="wightHeightLifeSpan">Tamaño: {
+                                selectedDog[0].height[0] === selectedDog[0].height[1] ?
+                                    (`${selectedDog[0].height[0]} - NaN años`) :
+                                    (`${selectedDog[0].height[0]} - ${selectedDog[0].height[1]} años`)} cm</h3>
                         </div>
                         <h3 className="wightHeightLifeSpan">
                             Esperanza de vida: {

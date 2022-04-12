@@ -276,6 +276,7 @@
 .createDogButton:disabled {
     background-color: rgba(0, 0, 0, 0.315);
     color: black;
+    cursor: not-allowed;
 }
 
 .createDogButton:hover 

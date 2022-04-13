@@ -22,13 +22,14 @@ export default function Home() {
     const dispatch = useDispatch();
     const allDogs = useSelector((state) => state.dogs);
     const allTemperaments = useSelector((state) => state.temperaments);
-    const [,setOrden] = useState("");
+    
+    const [, setOrden] = useState("");
     const [dogsOnPage,] = useState(8);
     const [currentPage, setCurrentPage] = useState(1);
 
     const indexLastDog = currentPage * dogsOnPage;
     const indexFristDog = indexLastDog - dogsOnPage;
-    
+
     const currentDog = allDogs.slice(indexFristDog, indexLastDog);
 
     const paginado = (pageNumber) => {

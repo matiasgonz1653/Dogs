@@ -20,9 +20,9 @@ router.get("/dogs", async function (req, res) {
 
 
 router.get("/dogs/:id", async (req, res) => {
+    const { id } = req.params;
     const allDogs = await getAllDogs();
 
-    const { id } = req.params;
     if (id) {
         let dogId = await allDogs.filter((obj) => obj.id == id);
         dogId.length
@@ -37,7 +37,7 @@ router.get("/temperament", async (req, res) => {
 
     const allTemperaments = await Temperament.findAll();
     const filteredTemperaments = await allTemperaments.map((obj) => obj.name);
-    res.status(200).send(filteredTemperaments);
+    res.send(filteredTemperaments);
 });
 
 router.post("/dog", async (req, res) => {

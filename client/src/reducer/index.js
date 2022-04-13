@@ -60,7 +60,7 @@ function rootReducer(state = initialState, action) {
             if (action.payload === "default") {
                 return {
                     ...state,
-                    dogs: state.allDogs
+                    dogs: state.dogs
                 }
             }
             if (action.payload === "Asc") {
@@ -99,7 +99,7 @@ function rootReducer(state = initialState, action) {
             if (action.payload === "default") {
                 return {
                     ...state,
-                    dogs: state.allDogs
+                    dogs: state.dogs
                 }
             }
             if (action.payload === "min_weight") {

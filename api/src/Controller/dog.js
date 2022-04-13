@@ -7,6 +7,74 @@ const getApiInfo = async () => {
 
     const dogInfo = await api.data.map(d => {
 
+        const weightMM = []
+        d.weight.metric.split("-")?.forEach(element => {
+            weightMM.push(parseInt(element.trim()));
+        })
+        if (!weightMM[1]) {
+            weightMM.push(weightMM[0])
+        }
+
+        return{
+            id: d.id,
+            name: d.name,
+            weight: weightMM,
+            image: d.image.url,
+            temperament: d.temperament
+        }
+    })
+
+    return dogInfo;
+}
+
+const getDBinfo = async () => {
+    const dogInDB = await Dog.findAll({
+        include:{ 
+            model: Temperament,
+            attributes: ["name"],
+            through: {
+                attributes: [],
+            }
+        }
+    })
+
+    const dogInfo = await dogInDB.map(d => {
+
+        const weightMM = []
+        d.weight.split("-")?.forEach(element => {
+            weightMM.push(parseInt(element.trim()));
+        })
+        if (!weightMM[1]) {
+            weightMM.push(weightMM[0])
+        }
+
+        return{
+            id: d.id,
+            name: d.name,
+            weight: weightMM,
+            image: d.image,
+            temperament: d.temperaments,
+            createdAtDb: d.createdAtDb
+        }
+    })
+    
+return dogInfo;
+}
+
+
+const getAllDogs = async () => {
+    const apiInfo = await getApiInfo();
+    const dbInfo = await getDBinfo();
+    const allInfo = apiInfo.concat(dbInfo);
+
+    return allInfo
+}
+
+const getDetailsApiInfo = async () => {
+    const api = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
+
+    const dogInfo = await api.data.map(d => {
+
         const heightMM = []
         d.height.metric.split("-")?.forEach(element => {
             heightMM.push(parseInt(element.trim()));
@@ -45,7 +113,7 @@ const getApiInfo = async () => {
     return dogInfo;
 }
 
-const getDBinfo = async () => {
+const getDetailsDBinfo = async () => {
     const dogInDB = await Dog.findAll({
         include:{ 
             model: Temperament,
@@ -86,7 +154,7 @@ const getDBinfo = async () => {
             lifeSpan: life_SpanAA,
             image: d.image,
             temperament: d.temperaments,
-            createdAtDb: d.createdAtDb,
+            createdAtDb: d.createdAtDb
         }
     })
     
@@ -94,16 +162,15 @@ return dogInfo;
 }
 
 
-const getAllDogs = async () => {
-    const apiInfo = await getApiInfo();
-    const dbInfo = await getDBinfo();
+const getDetailsDogs = async () => {
+    const apiInfo = await getDetailsApiInfo();
+    const dbInfo = await getDetailsDBinfo();
     const allInfo = apiInfo.concat(dbInfo);
 
     return allInfo
 }
-
 module.exports = {
     getAllDogs,
-    getApiInfo
+    getDetailsDogs
 }
 

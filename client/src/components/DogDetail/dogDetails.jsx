@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component, useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail } from "../../actions/index";
+import { getDetail,clearStateDetails } from "../../actions/index";
 import { Link } from "react-router-dom";
 import img from "../img/back.png"
 import "./dogDetails.css"
@@ -11,14 +11,17 @@ import cargando from "../img/piq-loading.gif"
 
 export default function DogDetail() {
     const dispatch = useDispatch()
-    const {id} = useParams()
+    const { id } = useParams()
+
     
     useEffect(() => {
         dispatch(getDetail(id));
-    },[dispatch,id])
-    
-    const selectedDog = useSelector((state) => state.dogs)
-    
+    }, [dispatch, id])
+
+    const selectedDog = useSelector((state) => state.detailsDog)
+
+
+
     return (
         <div className="walpaperDetalle">
             {selectedDog.length > 0 ? (

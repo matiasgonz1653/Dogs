@@ -8,10 +8,12 @@ import {
     ORDER_BY_WEIGHT,
     FILTER_DOGS_BY_TEMPERAMENT,
     FILTER_BY_CREATED,
+    CLEAR_STATE,
 } from "../actions/action"
 
 const initialState = {
     dogs: [],
+    detailsDog:[],
     temperaments: [],
     allDogs: []
 }
@@ -46,9 +48,14 @@ function rootReducer(state = initialState, action) {
         case GET_DETAIL:
             return {
                 ...state,
-                dogs : action.payload
+                detailsDog : action.payload
             }
 
+        case GET_DETAIL:
+            return {
+                ...state,
+                detailsDog : []
+            }
 
         case POST_DOG:
             return {
@@ -136,6 +143,7 @@ function rootReducer(state = initialState, action) {
         case FILTER_DOGS_BY_TEMPERAMENT:
             console.log(action)
             const dogs = state.allDogs;
+            const dogsFilter = state.dogs
             dogs.map((dog) => {return(
                 typeof dog.temperament === "object"
                     ? dog.temperament = dog.temperament.map(t => { return t.name })
@@ -144,7 +152,7 @@ function rootReducer(state = initialState, action) {
             )})
             const temperamentFilter =
                 action.payload === 'All' ? state.allDogs
-                    : dogs.filter((e)=>
+                    : dogsFilter.filter((e)=>
                         e.temperament?.includes(action.payload))              
             return {
                 ...state,
@@ -154,7 +162,7 @@ function rootReducer(state = initialState, action) {
 
         case FILTER_BY_CREATED:
             console.log(action)
-            const Dogs = state.allDogs;
+            const Dogs = state.dogs;
             const createdFilter = (
                 action.payload === "All" ? state.allDogs :
                 Dogs.filter((e) => {

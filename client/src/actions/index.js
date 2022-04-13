@@ -9,6 +9,7 @@ import {
     ORDER_BY_WEIGHT,
     FILTER_DOGS_BY_TEMPERAMENT,
     FILTER_BY_CREATED,
+    CLEAR_STATE
 } from "./action"
 
 
@@ -39,6 +40,14 @@ export function getDetail(id) {
     } catch (error) {
         alert("error al buscar perro por ID")
     }}
+}
+
+export function clearStateDetails() {
+    return async function(dispatch){
+    return dispatch({
+        type: CLEAR_STATE,
+    });
+    }
 }
 
 export function getDogName(name) {

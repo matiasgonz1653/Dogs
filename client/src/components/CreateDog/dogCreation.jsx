@@ -112,17 +112,17 @@ export default function DogCreate(){
         } else {
             dispatch(postDog(input))
             navigate("/home")
-        alert("Perro creado")
-        setInput({
-            name: "",
-            minimHeight: "", 
-            maximHeight: "",
-            minimWeight: "",
-            maximWeight: "",
-            maxLifeSpan: "",
-            minLifeSpan: "",
-            image: "",
-            temperament: []
+            alert("Perro creado")
+            setInput({
+                name: "",
+                minimHeight: "", 
+                maximHeight: "",
+                minimWeight: "",
+                maximWeight: "",
+                maxLifeSpan: "",
+                minLifeSpan: "",
+                image: "",
+                temperament: []
         })
         }
     }

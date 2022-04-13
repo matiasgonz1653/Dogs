@@ -131,7 +131,7 @@ export default function Home() {
                 <Paginado
                     dogsOnPage={dogsOnPage}
                     allDogs={allDogs.length}
-                    paginado={paginado}
+                    pagina={paginado}
                 />
 
 

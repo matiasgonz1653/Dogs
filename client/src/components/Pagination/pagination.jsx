@@ -1,13 +1,12 @@
 import React from "react";
 import "./pagination.css"
 
-export default function Paginado ({dogsOnPage, allDogs, paginado}) {
+export default function Paginado ({dogsOnPage, allDogs, pagina}) {
     const pageNumbers = []
 
     for(let i = 0; i<Math.ceil(allDogs/dogsOnPage); i++) {
         pageNumbers.push(i+1)
     }
-
 
     return(
         <div>
@@ -16,7 +15,7 @@ export default function Paginado ({dogsOnPage, allDogs, paginado}) {
                     <button
                         className="paginationButton"
                         key={n}
-                        onClick={() => paginado(n)}
+                        onClick={() => pagina(n)}
                     >
                     {n}
                 </button>

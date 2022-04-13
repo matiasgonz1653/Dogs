@@ -33,6 +33,7 @@ export default function SearchBar() {
                     placeholder="Buscar..."
                     onKeyPress={e => e.key === 'Enter' && handleSubmit(e) }
                     onChange={e => handleInputChange(e)}
+                    value={name}
                     className="campoBuscar"
                 />
                 <button

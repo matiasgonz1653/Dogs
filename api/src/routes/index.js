@@ -37,7 +37,7 @@ router.get("/temperament", async (req, res) => {
 
     const allTemperaments = await Temperament.findAll();
     const filteredTemperaments = await allTemperaments.map((obj) => obj.name);
-    res.send(filteredTemperaments);
+    res.status(200).send(filteredTemperaments);
 });
 
 router.post("/dog", async (req, res) => {

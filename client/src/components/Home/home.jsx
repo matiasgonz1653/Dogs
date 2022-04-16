@@ -10,12 +10,14 @@ import {
     getDogTemperament,
     filterDogsByTemperament,
     filterDogsByCreated,
-    orderWeight,
-    orderAlphabetical,
+    //orderWeight,
+    order,
+    //orderAlphabetical,
 } from "../../actions/index";
 
 import "./home.css"
 import reload from "../img/reload.png"
+import cargando from "../img/loading.gif"
 
 
 export default function Home() {
@@ -45,19 +47,26 @@ export default function Home() {
         window.location.reload(false);
     }
 
-    function handleOrderByAlphabetical(e) {
+    function handleOrder(e) {
         e.preventDefault();
-        dispatch(orderAlphabetical(e.target.value));
+        dispatch(order(e.target.value));
         setCurrentPage(1);
         setOrden(`${ e.target.value }`);
     }
 
-    function handleOrderByWeight(e) {
+/*     function handleOrderByAlphabetical(e) {
+        e.preventDefault();
+        dispatch(orderAlphabetical(e.target.value));
+        setCurrentPage(1);
+        setOrden(`${ e.target.value }`);
+    } */
+
+/*     function handleOrderByWeight(e) {
         e.preventDefault();
         dispatch(orderWeight(e.target.value));
         setCurrentPage(1);
         setOrden(`${ e.target.value }`);
-    }
+    } */
 
     function handleFilterDogsByTemperament(e) {
         e.preventDefault();
@@ -100,17 +109,25 @@ export default function Home() {
 
                 <SearchBar/>
 
-                <select onChange={e=>handleOrderByAlphabetical(e)} className="lista">
+                <select onChange={e=>handleOrder(e)} className="lista">
                     <option value="default">Orden Alfabetico</option>
                     <option value="Asc">A-Z</option>
                     <option value="Des">Z-A</option>
+                    <option value="min_weight">Peso minimo</option>
+                    <option value="max_weight">Peso maximo</option>
                 </select>
 
-                <select onChange={e=>handleOrderByWeight(e)} className="lista">
+{/*                 <select onChange={e=>handleOrderByAlphabetical(e)} className="lista">
+                    <option value="default">Orden Alfabetico</option>
+                    <option value="Asc">A-Z</option>
+                    <option value="Des">Z-A</option>
+                </select> */}
+
+{/*                 <select onChange={e=>handleOrderByWeight(e)} className="lista">
                     <option value="default">Ordenado por peso</option>
                     <option value="min_weight">Minimo</option>
                     <option value="max_weight">Maximo</option>
-                </select>
+                </select> */}
 
                 <select onChange={(e) => handleFilterDogsByTemperament(e)} className="lista">
                     <option value="All">temperamentos</option>
@@ -135,9 +152,9 @@ export default function Home() {
                 />
 
 
-                <div className="positions">
-                {
-                    currentDog?.map(d => {
+                {currentDog.length > 0 ? (
+                <div className="positions">{
+                    currentDog.map(d => {
                         return (
                             <Card
                                 key={d.id}
@@ -152,6 +169,16 @@ export default function Home() {
                     })
                 }
                 </div>
+                ) : (
+                    <div>
+                    <img
+                        src={cargando}
+                        alt="cargando..."
+                        className="carga"
+                        />
+                    </div>
+                )
+                }
             </div>
         </div>
     )

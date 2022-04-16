@@ -1,8 +1,8 @@
-import React, { Component, useState } from "react";
+import React from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail,clearStateDetails } from "../../actions/index";
+import { getDetail } from "../../actions/index";
 import { Link } from "react-router-dom";
 import img from "../img/back.png"
 import "./dogDetails.css"
@@ -24,7 +24,7 @@ export default function DogDetail() {
 
     return (
         <div className="walpaperDetalle">
-            {selectedDog.length > 0 ? (
+            {(selectedDog.length > 0 && selectedDog[0].id == id) ? (
                 <div className="card-contenedor">
                     <div className="card-content">
                         <Link to='/home'>

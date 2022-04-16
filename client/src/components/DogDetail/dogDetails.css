@@ -89,3 +89,15 @@
     width: auto;
     height: 40ex;
 }
+
+.cargando{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    width: 10%;
+    height: 10%;
+    margin-top: 30ex;
+    margin-left: auto;
+    margin-right: auto;
+}

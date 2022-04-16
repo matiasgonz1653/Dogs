@@ -4,11 +4,11 @@ import {
     GET_TEMPERAMENTS,
     GET_DOG_NAME,
     POST_DOG,
-    ORDER_BY_ALPHABETICAL,
-    ORDER_BY_WEIGHT,
+    ORDER,
+    //ORDER_BY_ALPHABETICAL,
+    //ORDER_BY_WEIGHT,
     FILTER_DOGS_BY_TEMPERAMENT,
-    FILTER_BY_CREATED,
-    CLEAR_STATE,
+    FILTER_BY_CREATED
 } from "../actions/action"
 
 const initialState = {
@@ -51,11 +51,6 @@ function rootReducer(state = initialState, action) {
                 detailsDog : action.payload
             }
 
-        case GET_DETAIL:
-            return {
-                ...state,
-                detailsDog : []
-            }
 
         case POST_DOG:
             return {
@@ -63,7 +58,7 @@ function rootReducer(state = initialState, action) {
             }
 
 
-        case ORDER_BY_ALPHABETICAL:
+/*         case ORDER_BY_ALPHABETICAL:
             if (action.payload === "default") {
                 return {
                     ...state,
@@ -137,8 +132,72 @@ function rootReducer(state = initialState, action) {
                     })
                 }
             }
-            break;
+            break; */
 
+        case ORDER:
+            if (action.payload === "default") {
+                return {
+                    ...state,
+                    dogs: state.dogs
+                }
+            }
+            if (action.payload === "Asc") {
+                return {
+                    ...state,
+                    dogs: state.dogs.sort(function (a, b) {
+                        if (a.name > b.name) {
+                            return 1;
+                        }
+                        if (b.name > a.name) {
+                            return -1;
+                        }
+                        return 0
+                    })
+                }
+            }
+            if (action.payload === "Des") {
+                return {
+                    ...state,
+                    dogs: state.dogs.sort(function (a, b) {
+                        if (a.name > b.name) {
+                            return -1;
+                        }
+                        if (b.name > a.name) {
+                            return 1
+                        }
+                        return 0;
+                    })
+                }
+            }
+            if (action.payload === "min_weight") {
+                return {
+                    ...state,
+                    dogs: state.dogs.sort((a, b) => {
+                        if (a.weight[0] > b.weight[0]) {
+                            return 1;
+                        }
+                        if (b.weight[0] > a.weight[0]) {
+                            return -1;
+                        }
+                        return 0;
+                    })
+                }
+            }
+            if (action.payload === "max_weight") {
+                return {
+                    ...state,
+                    dogs: state.dogs.sort((a, b) => {
+                        if (a.weight[1] > b.weight[1]) {
+                            return -1;
+                        }
+                        if (b.weight[1] > a.weight[1]) {
+                            return 1;
+                        }
+                        return 0;
+                    })
+                }
+            }
+            break;
 
         case FILTER_DOGS_BY_TEMPERAMENT:
             console.log(action)

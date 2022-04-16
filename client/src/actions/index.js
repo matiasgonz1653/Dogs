@@ -5,11 +5,11 @@ import {
     GET_TEMPERAMENTS,
     GET_DOG_NAME,
     POST_DOG,
-    ORDER_BY_ALPHABETICAL,
-    ORDER_BY_WEIGHT,
+    ORDER,
+    //ORDER_BY_ALPHABETICAL,
+    //ORDER_BY_WEIGHT,
     FILTER_DOGS_BY_TEMPERAMENT,
-    FILTER_BY_CREATED,
-    CLEAR_STATE
+    FILTER_BY_CREATED
 } from "./action"
 
 
@@ -40,14 +40,6 @@ export function getDetail(id) {
     } catch (error) {
         alert("error al buscar perro por ID")
     }}
-}
-
-export function clearStateDetails() {
-    return async function(dispatch){
-    return dispatch({
-        type: CLEAR_STATE,
-    });
-    }
 }
 
 export function getDogName(name) {
@@ -94,13 +86,19 @@ export function postDog (payload) {
     } 
 } 
 
+export function order(payload) {
+    return {
+        type: ORDER,
+        payload
+    }
+}
 
-export function orderAlphabetical(payload) {
+/* export function orderAlphabetical(payload) {
     return {
         type: ORDER_BY_ALPHABETICAL,
         payload
     }
-}
+} */
 
 export function filterDogsByTemperament(payload) {
     return {
@@ -109,12 +107,12 @@ export function filterDogsByTemperament(payload) {
     }
 }
 
-export function orderWeight(payload) {
+/* export function orderWeight(payload) {
     return {
         type: ORDER_BY_WEIGHT,
         payload
     }
-}
+} */
 
 export function filterDogsByCreated (payload) {
     return {

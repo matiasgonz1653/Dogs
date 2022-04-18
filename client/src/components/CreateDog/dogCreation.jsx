@@ -59,8 +59,18 @@ const validate = function(input){
 export default function DogCreate(){ 
     const dispatch = useDispatch()
     const temperament = useSelector((state) => state.temperaments)
-    const [errors, setErrors] = useState ({})
+    const [errors, setErrors] = useState({})
     
+    temperament.sort(function (a, b) {
+        if (a > b) {
+            return 1;
+        }
+        if (b > a) {
+            return -1
+        }
+        return 0;
+    })
+
     useEffect(() => {
         dispatch(getDogTemperament())
     }, [dispatch]);

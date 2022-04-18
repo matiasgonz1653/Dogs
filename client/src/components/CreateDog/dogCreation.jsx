@@ -41,6 +41,9 @@ const validate = function(input){
     if (parseInt(input.maxLifeSpan) > 21){
         errors.maxLifeSpan = "Ingresar una esperaza de vida razonable (menos a 21 años)"
     }
+    if (parseInt(input.image) > 250){
+        errors.maxLifeSpan = "el link de la imagen es demaciado grande"
+    }
     if (parseInt(input.minLifeSpan) > parseInt(input.maxLifeSpan)){
         errors.minLifeSpan = "La esperanza de vida Minima es mayor a su maxima"
     }

@@ -202,7 +202,7 @@ function rootReducer(state = initialState, action) {
         case FILTER_DOGS_BY_TEMPERAMENT:
             console.log(action)
             const dogs = state.allDogs;
-            const dogsFilter = state.dogs
+            const dogsFilter = state.allDogs
             dogs.map((dog) => {return(
                 typeof dog.temperament === "object"
                     ? dog.temperament = dog.temperament.map(t => { return t.name })
@@ -221,7 +221,7 @@ function rootReducer(state = initialState, action) {
 
         case FILTER_BY_CREATED:
             console.log(action)
-            const Dogs = state.dogs;
+            const Dogs = state.allDogs;
             const createdFilter = (
                 action.payload === "All" ? state.allDogs :
                 Dogs.filter((e) => {

@@ -17,7 +17,7 @@ import {
 
 import "./home.css"
 import reload from "../img/reload.png"
-import cargando from "../img/loading.gif"
+import cargando from "../img/loading-dog.gif"
 
 
 export default function Home() {
@@ -25,6 +25,16 @@ export default function Home() {
     const allDogs = useSelector((state) => state.dogs);
     const allTemperaments = useSelector((state) => state.temperaments);
     
+    allTemperaments.sort(function (a, b) {
+        if (a > b) {
+            return 1;
+        }
+        if (b > a) {
+            return -1
+        }
+        return 0;
+    })
+
     const [, setOrden] = useState("");
     const [dogsOnPage,] = useState(8);
     const [currentPage, setCurrentPage] = useState(1);
@@ -131,12 +141,14 @@ export default function Home() {
 
                 <select onChange={(e) => handleFilterDogsByTemperament(e)} className="lista">
                     <option value="All">temperamentos</option>
-                    {allTemperaments.map((temperament) => (
+                    {
+                        allTemperaments.map((temperament) => (
                         <option
                             value={temperament}
                             key={temperament}
                         >{temperament}</option>
-                    ))}
+                        ))
+                    }
                 </select>
 
                 <select onChange={(e)=>handleFilterCreate(e)} className="lista">

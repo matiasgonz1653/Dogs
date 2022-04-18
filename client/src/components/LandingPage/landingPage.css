@@ -23,6 +23,7 @@
     top: 35%;
     color: rgb(73, 212, 17);
     text-shadow: 2px 2px 4px #000000;
+    margin-top: -1ex;
 }
 
 .button

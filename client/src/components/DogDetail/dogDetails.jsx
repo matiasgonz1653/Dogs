@@ -51,6 +51,10 @@ export default function DogDetail() {
                                     (`${selectedDog[0].lifeSpan[0]} - NaN años`) :
                                     (`${selectedDog[0].lifeSpan[0]} - ${selectedDog[0].lifeSpan[1]} años`)
                             } </h3>
+                        <h3 className="wightHeightLifeSpan">
+                            Origen: {
+                                selectedDog[0].origin? selectedDog[0].origin: " NaN "
+                            } </h3>
                         <h2 className="temperamentDetalle">Temperamentos: {
                             selectedDog[0].createdAtDb
                                 ? selectedDog[0].temperament.map(t => { return t.name }).join(", ")

@@ -106,7 +106,8 @@ const getDetailsApiInfo = async () => {
             weight: weightMM,
             lifeSpan: life_SpanAA,
             image: d.image.url,
-            temperament: d.temperament
+            temperament: d.temperament,
+            origin: d.origin
         }
     })
 

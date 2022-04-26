@@ -97,7 +97,6 @@ function rootReducer(state = initialState, action) {
 
 
         case ORDER_BY_WEIGHT:
-            console.log(action)
             if (action.payload === "default") {
                 return {
                     ...state,
@@ -200,7 +199,6 @@ function rootReducer(state = initialState, action) {
             break;
 
         case FILTER_DOGS_BY_TEMPERAMENT:
-            console.log(action)
             const dogs = state.allDogs;
             const dogsFilter = state.allDogs
             dogs.map((dog) => {return(
@@ -220,7 +218,6 @@ function rootReducer(state = initialState, action) {
 
 
         case FILTER_BY_CREATED:
-            console.log(action)
             const Dogs = state.allDogs;
             const createdFilter = (
                 action.payload === "All" ? state.allDogs :

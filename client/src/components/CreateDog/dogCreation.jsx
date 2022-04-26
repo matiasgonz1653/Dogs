@@ -87,7 +87,6 @@ export default function DogCreate(){
         temperament: []
     })
 
-    console.log(input)
     
     function refreshPage() {
         window.location.reload(false);

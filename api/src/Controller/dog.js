@@ -1,9 +1,9 @@
-const { API_KEY } = process.env
+//const { API_KEY } = process.env
 const axios = require('axios')
 const { Dog, Temperament } = require('../db');
 
 const getApiInfo = async () => {
-    const api = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
+    const api = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=a7a64a4a-91b2-4745-8551-d10ba1331755`)
 
     const dogInfo = await api.data.map(d => {
 
@@ -71,7 +71,7 @@ const getAllDogs = async () => {
 }
 
 const getDetailsApiInfo = async () => {
-    const api = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
+    const api = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=a7a64a4a-91b2-4745-8551-d10ba1331755`)
 
     const dogInfo = await api.data.map(d => {
 

@@ -6,7 +6,7 @@ import icon from "../img/reload.png"
 import remove from "../img/remove.png"
 import iconHome from "../img/home1.png"
 import "./dogCreation.css"
-import swal from 'sweetalert';
+//import swal from 'sweetalert';
 
 const validate = function(input){
     let errors = {}
@@ -126,8 +126,8 @@ export default function DogCreate(){
         } else {
             dispatch(postDog(input))
             navigate("/home")
-            //alert("Perro creado")
-            alertaPerroGuardado()
+            alert("Perro creado")
+            //alertaPerroGuardado()
             setInput({
                 name: "",
                 minimHeight: "", 
@@ -142,7 +142,7 @@ export default function DogCreate(){
         }
     }
 
-    const alertaPerroGuardado = () => {
+    /* const alertaPerroGuardado = () => {
         swal({
             title: "Perro creado",
             text:
@@ -150,7 +150,7 @@ export default function DogCreate(){
             icon: "success",
             button: "Ok",
         })
-    };
+    }; */
 
     return(
         <div className="fondo">

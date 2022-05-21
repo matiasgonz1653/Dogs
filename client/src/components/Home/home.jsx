@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Card from "../Card/dog";
 import Paginado from "../Pagination/pagination"
 import SearchBar from "../SearchBar/searchBar";
+import iconHome from "../img/home1.png"
 import {
     getDogs,
     getDogTemperament,
@@ -118,6 +119,19 @@ export default function Home() {
                 </button>
 
                 <SearchBar/>
+
+                <Link type="submit"
+                    to={"/"}
+                    className="buttonHome"
+                >
+                    <img
+                        width="20px" height="20px"
+                        className="iconHome"
+                        src={iconHome}
+                        alt="">
+                    </img>
+                </Link>
+
 
                 <select onChange={e=>handleOrder(e)} className="lista">
                     <option value="default">Orden Alfabetico</option>

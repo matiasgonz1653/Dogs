@@ -28,11 +28,11 @@ export function getDogs() {
 }
 
 export function getDetail(id) {
-    console.log("getDetails")
+    //console.log("getDetails")
     return async function (dispatch){
     try {
         var json = await axios.get(`/dogs/${id}`)
-        console.log(json.data)
+        //console.log(json.data)
         return dispatch({
             type: GET_DETAIL,
             payload: json.data
@@ -43,7 +43,7 @@ export function getDetail(id) {
 }
 
 export function getDogName(name) {
-    console.log(name)
+    //console.log(name)
     return async function (dispatch) {
         try {
             var resp = await axios.get(`/dogs?name=${name}`)

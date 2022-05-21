@@ -121,8 +121,9 @@ export default function DogCreate(){
         e.preventDefault()
         setErrors(validate(input))
         const errorSaver = validate(input)
-        if(Object.values(errorSaver).length !== 0 ) {
-            alert("Error, Completa los campos con valores que cumplan las condiciones para crear tu raza de perro")
+        if (Object.values(errorSaver).length !== 0) {
+            messajeError()
+            //alert("Error, Completa los campos con valores que cumplan las condiciones para crear tu raza de perro")
         } else {
             dispatch(postDog(input))
             navigate("/home")
@@ -148,6 +149,16 @@ export default function DogCreate(){
             text:
                 "Tu raza creada se guardará para que puedas visualizarlo en cualquier momento",
             icon: "success",
+            button: "Ok",
+        })
+    };
+
+    const messajeError= () => {
+        swal({
+            title: "Error",
+            text:
+                "Error, Completa los campos con valores que cumplan las condiciones para crear tu raza de perro",
+            icon: "error",
             button: "Ok",
         })
     };

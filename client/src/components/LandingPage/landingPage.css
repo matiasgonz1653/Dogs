@@ -23,12 +23,13 @@
     top: 35%;
     color: rgb(73, 212, 17);
     text-shadow: 2px 2px 4px #000000;
+    margin-top: auto;
     margin-right: auto;
 }
 
 .button
 {
-    display: flex;
+    display: block;
     padding: 15px 30px;
     border: 2px solid rgb(43, 255, 0);
     margin: 40px;
@@ -38,7 +39,7 @@
     color: rgb(0, 0, 0);
     transition: 0.3s;
     border-radius: 2ex;
-    margin-top: 20%;
+    margin-top: 50ex;
     margin-bottom: auto;
     margin-left: auto;
     margin-right: auto;

@@ -103,11 +103,17 @@
 
 .divCrear{
     background-color: #00000098;
-    height: 4ex;
+    height: 3ex;
 }
 
 .divCrear:hover{
-    transform:scaleY(1.3);
+    transition-delay: 0s;
+    color: rgb(43, 255, 0);
+    box-shadow: 0 0 20px rgb(0, 255, 0),
+                0 0 40px rgb(26, 153, 26),
+                0 0 80px rgb(54, 148, 54),
+                0 0 160px rgba(13, 153, 0, 0.068); 
+    transform:scaleY(1.1);
 }
 
 .carga{
